@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.AddTerm">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Add Term"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Padding="0,20,0,0" />
+                <Label Text="Name New Term"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Entry VerticalOptions="Start"
+                    Margin="20,0,20,0"
+                    Placeholder="Title"/>
+                <Label Text="Set Term Dates"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Grid Padding="30,0,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Text="Start"
+                           Padding="30,5,0,0"/>
+
+                    <Label Text="End"
+                           Padding="30,5,30,0"
+                           Grid.Column="1"
+                           HorizontalOptions="Center"/>
+
+                    <DatePicker HorizontalOptions="Start"
+                                Grid.Row="1"/>
+                    <DatePicker HorizontalOptions="Center"
+                                Grid.Row="1"
+                                Grid.Column="1"/>
+
+                </Grid>
+                <Label Text="Add Courses"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Picker/>
+                <Button BackgroundColor="Blue"
+                        Text="Add Course"
+                        TextColor="White"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked"/>
+                <Button BackgroundColor="Yellow"
+                        Text="Save"
+                        TextColor="Black"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked_1"/>
+                <Button BackgroundColor="Red"
+                        Text="Cancel"
+                        TextColor="White"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked_2"/>
+
+                <Button Text="Log out"
+                        WidthRequest="100"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Start"
+                        Clicked="Button_Clicked_3"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

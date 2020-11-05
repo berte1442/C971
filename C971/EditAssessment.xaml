@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.EditAssessment">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Edit Assessment"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Padding="0,20,0,0" />
+
+                <Label Text="Selected Assessment Name"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                
+                <Label Text="Edit Course Name"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                
+                <Entry VerticalOptions="Start"
+                    Margin="20,0,20,0"
+                    Placeholder="Title"/>
+
+                <Label Text="Assessment Type"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Grid Padding="100,0,0,0">
+                    <CheckBox/>
+                    <Label Text="OA"
+                           Margin="30,5,0,0"/>
+                    <CheckBox Grid.Column="1"/>
+                    <Label Text="PA"
+                        Grid.Column="1"
+                        Margin="30,5,0,0"/>
+                </Grid>
+                <Label Text="Notifications"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Grid Padding="50,0,0,0">
+                    <CheckBox/>
+                    <Label Text="Assessment Start"
+                           Margin="30,5,0,0"/>
+                    <CheckBox Grid.Column="1"/>
+                    <Label Text="Assessment End"
+                        Grid.Column="1"
+                        Margin="30,5,0,0"/>
+                </Grid>
+                <Switch HorizontalOptions="Center"
+                        OnColor="Green"/>
+
+                <Button Text="Save"
+                        BackgroundColor="Yellow"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0"
+                        Clicked="Button_Clicked"/>
+                <Button Text="Cancel"
+                        BackgroundColor="Red"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,20"
+                        Clicked="Button_Clicked_1"/>
+                <Button Text="Log out"
+                        WidthRequest="100"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Start"
+                        Clicked="Button_Clicked_2"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

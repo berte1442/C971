@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.Terms">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Terms"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Padding="0,20,0,0" />
+                <Label Text="Select Term"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    Padding="0,40,0,0"/>
+
+
+                <StackLayout Padding="20,0,20,0" BackgroundColor="Green"
+                             HeightRequest="300">
+                    <Picker/>
+                    <ListView x:Name="CourseListView">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" Detail="{Binding StartDate} + '-' {Binding EndDate}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Button Text="Edit Term"
+                    TextColor="White"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Blue"
+                    WidthRequest="200"
+                    Clicked="Button_Clicked"/>
+                <Button Text="Delete Term"
+                    TextColor="White"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Red"
+                    WidthRequest="200"
+                    Clicked="Button_Clicked_1"/>
+                <Button Text="Add Term"
+                    TextColor="White"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Green"
+                    WidthRequest="200"
+                    Clicked="Button_Clicked_2"/>
+                <Button Text="Save"
+                    TextColor="Black"
+                    VerticalOptions="Start"
+                    HorizontalOptions="CenterAndExpand"
+                    BackgroundColor="Yellow"
+                    WidthRequest="200"
+                    Clicked="Button_Clicked_3"/>
+                <Button Text="Log out"
+                        WidthRequest="100"
+                        HorizontalOptions="Start"
+                        VerticalOptions="EndAndExpand"
+                        Clicked="Button_Clicked_4"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

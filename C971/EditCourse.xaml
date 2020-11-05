@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.EditCourse">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Edit Course"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Padding="0,20,0,0" />
+
+                <Label Text="Change Course Title"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Entry VerticalOptions="Start"
+                    Margin="20,0,20,0"
+                    Placeholder="Title"/>
+
+                <Label Text="Edit Course Dates"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Grid Padding="30,0,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Text="Start"
+                           Padding="30,5,0,0"/>
+
+                    <Label Text="End"
+                           Padding="30,5,30,0"
+                           Grid.Column="1"
+                           HorizontalOptions="Center"/>
+
+                    <DatePicker HorizontalOptions="Start"
+                                Grid.Row="1"/>
+                    <DatePicker HorizontalOptions="Center"
+                                Grid.Row="1"
+                                Grid.Column="1"/>
+
+                </Grid>
+                <Label Text="Course Status"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+            
+                <Label Text="Course Instructor"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+            
+                <Label Text="Notes (Optional)"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+            
+                <Editor Text="This is a lot of text.  I'm trying to see what this looks like on my phone when I type a lot of stuff here."
+                        Margin="20,0,20,0"/>
+
+                <Grid>
+                    <Label Text="Private"
+                           Grid.Column="0"
+                           HorizontalTextAlignment="End"/>
+                    <Switch HorizontalOptions="Center"
+                            Grid.Column="1"
+                            OnColor="LightGray"/>
+                    <Label Text="Public"
+                           Grid.Column="2"
+                           HorizontalTextAlignment="Start"/>
+                </Grid>
+                <Label Text="Notifications"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Grid>
+                    <Label Text="Start"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="End"
+                           Grid.Column="1"
+                           HorizontalTextAlignment="Center"/>
+                    <Switch Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"/>
+                    <Switch Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"/>
+                </Grid>
+
+                <Label Text="Assessments"
+                       HorizontalOptions="Center"/>
+                <Grid>
+                    <Grid>
+                        <CheckBox HorizontalOptions="End"/>
+                        <Label Text="Assessment 1"
+                               Grid.Column="1"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <CheckBox HorizontalOptions="End"/>
+                        <Label Grid.Column="1"
+                            Text="Assessment 2"/>
+                    </Grid>
+                </Grid>
+                <Grid>
+                    <Button Text="Edit"
+                            BackgroundColor="Blue"
+                            Clicked="Button_Clicked"/>
+                    <Button Grid.Column="1"
+                            Text="Delete"
+                            BackgroundColor="Red"
+                            Clicked="Button_Clicked_1"/>
+                    <Button Grid.Column="2"
+                            Text="Add"
+                            BackgroundColor="Green"
+                            Clicked="Button_Clicked_2"/>
+                </Grid>
+                <Button Text="Save"
+                        BackgroundColor="Yellow"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0"
+                        Clicked="Button_Clicked_3"/>
+                <Button Text="Cancel"
+                        BackgroundColor="Red"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,20"
+                        Clicked="Button_Clicked_4"/>
+                <Button Text="Log out"
+                        WidthRequest="100"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Start"
+                        Clicked="Button_Clicked_5"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
