@@ -12,7 +12,7 @@ namespace C971
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginEntryPage());
+            MainPage = new NavigationPage(new Terms());  //bypass login page since it was not required
         }
 
         public static StudentAcademicsDB Database
@@ -21,7 +21,9 @@ namespace C971
             {
                 if(database == null)
                 {
-                    database = new StudentAcademicsDB(DependencyService.Get<ILocalFileHelper>().GetLocalFilePath("StudentAcademics.db3"));
+                    database = new StudentAcademicsDB(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "C971Database");
+
+                    //database = new StudentAcademicsDB(DependencyService.Get<ILocalFileHelper>().GetLocalFilePath("C971.db3"));
                 }
                 return database;
             }

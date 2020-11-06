@@ -48,7 +48,7 @@
                                 Grid.Column="1"/>
 
                 </Grid>
-                <Label Text="Edit Course"
+                <Label Text="Edit/Remove Course"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 <Picker/>
@@ -59,6 +59,26 @@
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Clicked="Button_Clicked"/>
+                <Button BackgroundColor="Red"
+                        Text="Remove Course"
+                        TextColor="White"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked_4"/>
+                <Label Text="Add Course"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Picker/>
+
+                <Button BackgroundColor="Green"
+                        Text="Add Course"
+                        TextColor="White"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Clicked_5"
+                        Margin="0,0,0,30"/>
                 <Button BackgroundColor="Yellow"
                         Text="Save"
                         TextColor="Black"

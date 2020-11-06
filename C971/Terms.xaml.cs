@@ -12,32 +12,36 @@ namespace C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Terms : ContentPage
     {
+        public string selectedTerm;
+
         public Terms()
         {
             InitializeComponent();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void EditTerm_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new EditTerm());
         }
 
-        private void Button_Clicked_1(object sender, EventArgs e)
+        private void DeleteTerm_Clicked(object sender, EventArgs e)
         {
-            // delete
+            //// this button will delete an entire term
+            //StudentAcademicsDB studentAcademicsDB = new StudentAcademicsDB(App.Database.ToString());
+            //studentAcademicsDB.DeleteTermAsync();
         }
 
-        private async void Button_Clicked_2(object sender, EventArgs e)
+        private async void AddTerm_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddTerm());
         }
 
-        private void Button_Clicked_3(object sender, EventArgs e)
-        {
-            // save
-        }
+        //private void Button_Clicked_3(object sender, EventArgs e)
+        //{
+        //    // save
+        //}
 
-        private void Button_Clicked_4(object sender, EventArgs e)
+        private void Logout_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage.Navigation.PopToRootAsync();   
         }
@@ -45,8 +49,34 @@ namespace C971
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            
-            CourseListView.ItemsSource = await App.Database.GetCoursesAsync();  // this code will need to change to getting course info from individual terms
+
+            var terms = await App.Database.GetTermsAsync();
+            TermPicker.Items.Clear();
+
+            for (int i = 0; i < terms.Count; i++)
+            {
+                TermPicker.Items.Add(terms[i].Name);
+
+                if(selectedTerm == terms[i].Name)
+                {
+                    CourseListView.ItemsSource = new string[]
+                    {
+                        terms[i].CourseID.ToString(),
+                        terms[i].Course2ID.ToString(),
+                        terms[i].Course3ID.ToString(),
+                        terms[i].Course4ID.ToString(),
+                        terms[i].Course5ID.ToString(),
+                        terms[i].Course6ID.ToString(),
+                    };                  
+                }
+            }
+
+            //CourseListView.ItemsSource = await App.Database.GetCoursesAsync();  // this code will need to change to getting course info from individual terms
+        }
+
+        private void TermPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedTerm = TermPicker.SelectedItem.ToString();
         }
     }
 }

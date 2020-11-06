@@ -13,11 +13,6 @@ namespace C971
             get;
             set;
         }
-        public int StudentID
-        {
-            get;
-            set;
-        }
         public string Name
         {
             get;

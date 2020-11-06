@@ -36,5 +36,15 @@ namespace C971
         {
             Application.Current.MainPage.Navigation.PopToRootAsync();   
         }
+
+        private void Button_Clicked_4(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button_Clicked_5(object sender, EventArgs e)
+        {
+
+        }
     }
 }

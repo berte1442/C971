@@ -18,6 +18,11 @@ namespace C971
             get;
             set;
         }
+        public string AssessmentDescription
+        {
+            get;
+            set;
+        }
         public DateTime StartDate
         {
             get;

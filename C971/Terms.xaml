@@ -21,7 +21,9 @@
 
                 <StackLayout Padding="20,0,20,0" BackgroundColor="Green"
                              HeightRequest="300">
-                    <Picker/>
+                    <Picker x:Name="TermPicker" TitleColor="DarkGreen" SelectedIndexChanged="TermPicker_SelectedIndexChanged">
+                    </Picker>
+                    
                     <ListView x:Name="CourseListView">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -36,33 +38,33 @@
                     HorizontalOptions="Center"
                     BackgroundColor="Blue"
                     WidthRequest="200"
-                    Clicked="Button_Clicked"/>
+                    Clicked="EditTerm_Clicked"/>
                 <Button Text="Delete Term"
                     TextColor="White"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
                     BackgroundColor="Red"
                     WidthRequest="200"
-                    Clicked="Button_Clicked_1"/>
+                    Clicked="DeleteTerm_Clicked"/>
                 <Button Text="Add Term"
                     TextColor="White"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
                     BackgroundColor="Green"
                     WidthRequest="200"
-                    Clicked="Button_Clicked_2"/>
-                <Button Text="Save"
+                    Clicked="AddTerm_Clicked"/>
+                <!--<Button Text="Save"
                     TextColor="Black"
                     VerticalOptions="Start"
                     HorizontalOptions="CenterAndExpand"
                     BackgroundColor="Yellow"
                     WidthRequest="200"
-                    Clicked="Button_Clicked_3"/>
+                    Clicked="Button_Clicked_3"/>-->
                 <Button Text="Log out"
                         WidthRequest="100"
                         HorizontalOptions="Start"
                         VerticalOptions="EndAndExpand"
-                        Clicked="Button_Clicked_4"/>
+                        Clicked="Logout_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
