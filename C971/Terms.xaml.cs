@@ -14,6 +14,8 @@ namespace C971
     public partial class Terms : ContentPage
     {
         public string selectedTerm;
+        public bool firstLoad = true;
+
 
         public Terms()
         {
@@ -52,14 +54,15 @@ namespace C971
             base.OnAppearing();
 
             var terms = await App.Database.GetTermsAsync();
-            TermPicker.Items.Clear();
-
-            for (int i = 0; i < terms.Count; i++)
+            //TermPicker.Items.Clear();
+            while (firstLoad)
             {
-                TermPicker.Items.Add(terms[i].Name);                            
+                for (int i = 0; i < terms.Count; i++)
+                {
+                    TermPicker.Items.Add(terms[i].Name);
+                }
+                firstLoad = false;
             }
-
-            //CourseListView.ItemsSource = await App.Database.GetCoursesAsync();  // this code will need to change to getting course info from individual terms
         }
 
         private async void TermPicker_SelectedIndexChanged(object sender, EventArgs e)
