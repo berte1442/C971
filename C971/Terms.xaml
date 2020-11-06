@@ -25,11 +25,11 @@
                     </Picker>
                     
                     <ListView x:Name="CourseListView">
-                        <ListView.ItemTemplate>
+                        <!--<ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextCell Text="{Binding Name}" Detail="{Binding StartDate} + '-' {Binding EndDate}"/>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
+                        </ListView.ItemTemplate>-->
                     </ListView>
                 </StackLayout>
                 <Button Text="Edit Term"

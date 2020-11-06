@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,28 +56,46 @@ namespace C971
 
             for (int i = 0; i < terms.Count; i++)
             {
-                TermPicker.Items.Add(terms[i].Name);
-
-                if(selectedTerm == terms[i].Name)
-                {
-                    CourseListView.ItemsSource = new string[]
-                    {
-                        terms[i].CourseID.ToString(),
-                        terms[i].Course2ID.ToString(),
-                        terms[i].Course3ID.ToString(),
-                        terms[i].Course4ID.ToString(),
-                        terms[i].Course5ID.ToString(),
-                        terms[i].Course6ID.ToString(),
-                    };                  
-                }
+                TermPicker.Items.Add(terms[i].Name);                            
             }
 
             //CourseListView.ItemsSource = await App.Database.GetCoursesAsync();  // this code will need to change to getting course info from individual terms
         }
 
-        private void TermPicker_SelectedIndexChanged(object sender, EventArgs e)
+        private async void TermPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedTerm = TermPicker.SelectedItem.ToString();
+            var terms = await App.Database.GetTermsAsync();
+            List<int> courses = new List<int>();
+            courses.Clear();
+            for (int i = 0; i < terms.Count; i++)
+            {
+                if (selectedTerm == terms[i].Name)
+                {
+                    courses.Add(terms[i].CourseID);
+                    courses.Add(terms[i].Course2ID);
+                    courses.Add(terms[i].Course3ID);
+                    courses.Add(terms[i].Course4ID);
+                    courses.Add(terms[i].Course5ID);
+                    courses.Add(terms[i].Course6ID);                  
+                }
+            }
+
+            var allCourses = await App.Database.GetCoursesAsync();
+            List<string> courseDisplay = new List<string>();
+            foreach(var c in allCourses)
+            {
+                foreach(var n in courses)
+                {
+                    if(n == c.CourseID)
+                    {
+                        courseDisplay.Add(c.Name + " " + c.Status + " " + c.StartDate + "-" + c.EndDate);
+                    }
+                }
+            }
+
+            
+            CourseListView.ItemsSource = courseDisplay;
         }
     }
 }
