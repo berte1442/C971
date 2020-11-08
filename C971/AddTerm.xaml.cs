@@ -81,7 +81,6 @@ namespace C971
                 }
             }
 
-            // code below is commented out until database content is configured properly
             await App.Database.SaveTermAsync(term);
             
             await DisplayAlert("Saved", "Term Successfully Created", "Ok");

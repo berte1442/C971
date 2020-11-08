@@ -49,8 +49,9 @@ namespace C971
             } 
         }
 
-        private void Save_Clicked(object sender, EventArgs e)
+        private async void Save_Clicked(object sender, EventArgs e)
         {
+            
             currentTerm.Name = TermTitleEntry.Text;
             currentTerm.StartDate = StartDatePicker.Date;
             currentTerm.EndDate = EndDatePicker.Date;
@@ -110,9 +111,10 @@ namespace C971
                     currentTerm.Course6ID = courseList[i];
                 }
             }
-            App.Database.SaveTermAsync(currentTerm);
+            await App.Database.SaveTermAsync(currentTerm);
 
-            //Application.Current.MainPage.Navigation.PopAsync();
+            await DisplayAlert("Saved", "Term Successfully Edited", "Ok");
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void Cancel_Clicked(object sender, EventArgs e)
@@ -144,7 +146,7 @@ namespace C971
             base.OnAppearing();
 
             //  Sets placeholder to term name
-            TermTitleEntry.Placeholder = currentTerm.Name;
+            TermTitleEntry.Text = currentTerm.Name;
             /////////////////////////////////////
             //sets displayed dates to select terms dates
             StartDatePicker.Date = currentTerm.StartDate;

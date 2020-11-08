@@ -10,7 +10,10 @@ using Xamarin.Forms.Xaml;
 
 
 
-// CourseListView is not displaying correct courses
+// Java.Lang.NullPointerException: 'Attempt to invoke virtual method 'java.lang.String java.lang.Object.toString()' on a null object reference'
+// OnAppearing after term has been edited.
+//
+// program storage has to be cleared after this happens
 
 namespace C971
 {
