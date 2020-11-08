@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+
+// CourseListView is not displaying correct courses
+
 namespace C971
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,12 +19,12 @@ namespace C971
     {
         public string selectedTerm;
         public bool firstLoad = true;
-        List<string> courseDisplay = new List<string>();
+        //List<string> courseDisplay = new List<string>();
 
 
         public Terms()
         {
-            var dbCall = App.Database;
+            var dbCall = App.Database;  // alerts database to run check - if empty, populates with data
 
             InitializeComponent();
         }
@@ -57,11 +61,11 @@ namespace C971
             }
             else
             {
+                List<string> courseDisplay = new List<string>();
                 CourseListView.ItemsSource = null;
                 Term term = new Term();
                 var terms = await App.Database.GetTermsAsync();
                 selectedTerm = TermPicker.SelectedItem.ToString();
-                courseDisplay.Clear();
 
                 foreach (var t in terms)
                 {
@@ -70,6 +74,8 @@ namespace C971
                         await App.Database.DeleteTermAsync(t);
                     }
                 }
+                TermPicker.SelectedIndex = -1;
+                TermPicker.Items.Remove(selectedTerm);
                 CourseListView.ItemsSource = courseDisplay;
 
             }
@@ -93,16 +99,19 @@ namespace C971
                     TermPicker.Items.Add(terms[i].Name);
                 }
             }
+            CourseListView.ItemsSource = null;
         }
-
+        
         private async void TermPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
+                List<string> courseDisplay = new List<string>();
+
                 selectedTerm = TermPicker.SelectedItem.ToString();
                 var terms = await App.Database.GetTermsAsync();
                 List<int> courses = new List<int>();
-                //courses.Clear();
+
                 for (int i = 0; i < terms.Count; i++)
                 {
                     if (selectedTerm == terms[i].Name)
@@ -129,10 +138,11 @@ namespace C971
                 }
 
                 CourseListView.ItemsSource = courseDisplay;
+                //courseDisplay.Clear();
             }
             catch
             {
-                await DisplayAlert("issue","Issues finding terms","ok");
+                await DisplayAlert("issue", "Issue finding terms", "ok");
             }
         }
     }

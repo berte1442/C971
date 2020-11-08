@@ -23,10 +23,10 @@
                              HeightRequest="300">
                     <Picker x:Name="TermPicker" TitleColor="DarkGreen" SelectedIndexChanged="TermPicker_SelectedIndexChanged">
                     </Picker>
-                    
-                    <ListView x:Name="CourseListView">
 
-                    </ListView>
+                    <ListView x:Name="CourseListView"/>
+
+
                 </StackLayout>
                 <Button Text="Edit Term"
                     TextColor="White"
