@@ -141,7 +141,6 @@ namespace C971
             }
             catch
             {
-                await DisplayAlert("issue", "Term has been deleted", "ok");
             }
         }
     }

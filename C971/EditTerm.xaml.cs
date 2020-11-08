@@ -15,6 +15,9 @@ namespace C971
         Term currentTerm = new Term();
         bool firstLoad = true;
         string selectedCourse;
+        List<int> courseList = new List<int>();
+        List<int> removeList = new List<int>();
+
         public EditTerm(Term term)
         {
             InitializeComponent();
@@ -48,7 +51,68 @@ namespace C971
 
         private void Save_Clicked(object sender, EventArgs e)
         {
+            currentTerm.Name = TermTitleEntry.Text;
+            currentTerm.StartDate = StartDatePicker.Date;
+            currentTerm.EndDate = EndDatePicker.Date;
 
+            for(int i = 0; i < removeList.Count; i++)
+            {
+                if (removeList.Contains(currentTerm.CourseID))
+                {
+                    currentTerm.CourseID = 0;
+                }
+                else if (removeList.Contains(currentTerm.Course2ID))
+                {
+                    currentTerm.Course2ID = 0;
+                }
+                else if (removeList.Contains(currentTerm.Course3ID))
+                {
+                    currentTerm.Course3ID = 0;
+                }
+                else if (removeList.Contains(currentTerm.Course4ID))
+                {
+                    currentTerm.Course4ID = 0;
+                }
+                else if (removeList.Contains(currentTerm.Course5ID))
+                {
+                    currentTerm.Course5ID = 0;
+                }
+                else if (removeList.Contains(currentTerm.Course6ID))
+                {
+                    currentTerm.Course6ID = 0;
+                }
+            }
+
+            for(int i = 0; i < courseList.Count; i++)
+            {
+                if(currentTerm.CourseID == 0)
+                {
+                    currentTerm.CourseID = courseList[i];
+                }
+                else if(currentTerm.Course2ID == 0)
+                {
+                    currentTerm.Course2ID = courseList[i];
+                }
+                else if(currentTerm.Course3ID == 0)
+                {
+                    currentTerm.Course3ID = courseList[i];
+                }
+                else if(currentTerm.Course4ID == 0)
+                {
+                    currentTerm.Course4ID = courseList[i];
+                }
+                else if(currentTerm.Course5ID == 0)
+                {
+                    currentTerm.Course5ID = courseList[i];
+                }
+                else if(currentTerm.Course6ID == 0)
+                {
+                    currentTerm.Course6ID = courseList[i];
+                }
+            }
+            App.Database.SaveTermAsync(currentTerm);
+
+            //Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void Cancel_Clicked(object sender, EventArgs e)
@@ -61,14 +125,18 @@ namespace C971
             Application.Current.MainPage.Navigation.PopToRootAsync();   
         }
 
-        private void RemoveCourse_Clicked(object sender, EventArgs e)
+        private async void RemoveCourse_Clicked(object sender, EventArgs e)
         {
-
+            var removeCourse = TermCoursesPicker.SelectedItem;
+            Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
+            removeList.Add(course.CourseID);
         }
 
-        private void AddCourse_Clicked(object sender, EventArgs e)
+        private async void AddCourse_Clicked(object sender, EventArgs e)
         {
-
+            var addedCourse = AllCoursesPicker.SelectedItem;
+            Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
+            courseList.Add(course.CourseID);
         }
 
         protected async override void OnAppearing()

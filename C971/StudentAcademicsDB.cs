@@ -76,6 +76,10 @@ namespace C971
         {
             return database.Table<Course>().Where(i => i.CourseID == id).FirstOrDefaultAsync();
         }
+        public Task<Course> GetCourseAsync(string name)
+        {
+            return database.Table<Course>().Where(i => i.Name == name).FirstOrDefaultAsync();
+        }
         public Task<int> SaveCourseAsync(Course course)
         {
             if (course.CourseID != 0)
