@@ -12,9 +12,12 @@ namespace C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditCourse : ContentPage
     {
-        public EditCourse()
+        Course selectedCourse;
+        public EditCourse(Course course)
         {
             InitializeComponent();
+
+            selectedCourse = course;
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
@@ -48,5 +51,32 @@ namespace C971
             //Log out
             Application.Current.MainPage.Navigation.PopToRootAsync();
         }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            //sets selected course name as placeholder for editor
+            CourseTitleEntry.Placeholder = selectedCourse.Name;
+            /////////
+            // sets course dates to selected course start and end dates
+            StartDatePicker.Date = selectedCourse.StartDate;
+            EndDatePicker.Date = selectedCourse.EndDate;
+            //sets selected course status 
+            CourseStatusPicker.SelectedItem = selectedCourse.Status;
+            // loads all course instructors into Picker
+            var instructors = await App.Database.GetInstructorsAsync();
+            List<string> instructorNames = new List<string>();
+            foreach(var i in instructors)
+            {
+                instructorNames.Add(i.Name);
+
+                if(i.InstructorID == selectedCourse.InstructorID)
+                {
+                    InstructorPicker.SelectedItem = i.Name;
+                }
+            }
+            InstructorPicker.ItemsSource = instructorNames;
+        }
+
     }
 }

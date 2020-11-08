@@ -25,11 +25,7 @@
                     </Picker>
                     
                     <ListView x:Name="CourseListView">
-                        <!--<ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextCell Text="{Binding Name}" Detail="{Binding StartDate} + '-' {Binding EndDate}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>-->
+
                     </ListView>
                 </StackLayout>
                 <Button Text="Edit Term"
@@ -53,18 +49,7 @@
                     BackgroundColor="Green"
                     WidthRequest="200"
                     Clicked="AddTerm_Clicked"/>
-                <!--<Button Text="Save"
-                    TextColor="Black"
-                    VerticalOptions="Start"
-                    HorizontalOptions="CenterAndExpand"
-                    BackgroundColor="Yellow"
-                    WidthRequest="200"
-                    Clicked="Button_Clicked_3"/>-->
-                <Button Text="Log out"
-                        WidthRequest="100"
-                        HorizontalOptions="Start"
-                        VerticalOptions="EndAndExpand"
-                        Clicked="Logout_Clicked"/>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

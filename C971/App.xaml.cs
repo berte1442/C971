@@ -11,6 +11,7 @@ namespace C971
         public App()
         {
             InitializeComponent();
+            DataInsert.DatabaseCheck();
 
             MainPage = new NavigationPage(new Terms());  //bypass login page since it was not required
         }
@@ -22,14 +23,12 @@ namespace C971
                 if(database == null)
                 {
                     database = new StudentAcademicsDB(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "C971Database");
-
-                    //database = new StudentAcademicsDB(DependencyService.Get<ILocalFileHelper>().GetLocalFilePath("C971.db3"));
                 }
                 return database;
             }
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
         }
 

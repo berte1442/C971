@@ -18,7 +18,8 @@
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
 
-                <Entry VerticalOptions="Start"
+                <Entry x:Name="TermTitleEntry" 
+                    VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
 
@@ -41,35 +42,37 @@
                            Grid.Column="1"
                            HorizontalOptions="Center"/>
 
-                    <DatePicker HorizontalOptions="Start"
-                                Grid.Row="1"/>
-                    <DatePicker HorizontalOptions="Center"
-                                Grid.Row="1"
-                                Grid.Column="1"/>
+                    <DatePicker x:Name="StartDatePicker"
+                           HorizontalOptions="Start"
+                           Grid.Row="1"/>
+                    <DatePicker x:Name="EndDatePicker" 
+                            HorizontalOptions="Center"
+                            Grid.Row="1"
+                            Grid.Column="1"/>
 
                 </Grid>
                 <Label Text="Edit/Remove Course"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-                <Picker/>
+                <Picker x:Name="TermCoursesPicker"/>
                 <Button BackgroundColor="Blue"
                         Text="Edit Course"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked"/>
+                        Clicked="EditCourse_Clicked"/>
                 <Button BackgroundColor="Red"
                         Text="Remove Course"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_4"/>
+                        Clicked="RemoveCourse_Clicked"/>
                 <Label Text="Add Course"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-                <Picker/>
+                <Picker x:Name="AllCoursesPicker"/>
 
                 <Button BackgroundColor="Green"
                         Text="Add Course"
@@ -77,7 +80,7 @@
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_5"
+                        Clicked="AddCourse_Clicked"
                         Margin="0,0,0,30"/>
                 <Button BackgroundColor="Yellow"
                         Text="Save"
@@ -85,14 +88,14 @@
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_1"/>
+                        Clicked="Save_Clicked"/>
                 <Button BackgroundColor="Red"
                         Text="Cancel"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_2"/>
+                        Clicked="Cancel_Clicked"/>
 
                 <Button Text="Log out"
                         WidthRequest="100"

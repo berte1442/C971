@@ -17,7 +17,8 @@
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
 
-                <Entry VerticalOptions="Start"
+                <Entry x:Name="TitleEntry" 
+                    VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
                 <Label Text="Set Term Dates"
@@ -39,9 +40,11 @@
                            Grid.Column="1"
                            HorizontalOptions="Center"/>
 
-                    <DatePicker HorizontalOptions="Start"
+                    <DatePicker x:Name="StartDatePicker" 
+                        HorizontalOptions="Start"
                                 Grid.Row="1"/>
-                    <DatePicker HorizontalOptions="Center"
+                    <DatePicker x:Name="EndDatePicker" 
+                        HorizontalOptions="Center"
                                 Grid.Row="1"
                                 Grid.Column="1"/>
 
@@ -49,34 +52,34 @@
                 <Label Text="Add Courses"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-                <Picker/>
+                <Picker x:Name="AddCoursesPicker"/>
                 <Button BackgroundColor="Blue"
                         Text="Add Course"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked"/>
+                        Clicked="AddCourse_Clicked"/>
                 <Button BackgroundColor="Yellow"
                         Text="Save"
                         TextColor="Black"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_1"/>
+                        Clicked="Save_Clicked"/>
                 <Button BackgroundColor="Red"
                         Text="Cancel"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_2"/>
+                        Clicked="Cancel_Clicked"/>
 
-                <Button Text="Log out"
+                <Button Text="Home"
                         WidthRequest="100"
                         VerticalOptions="EndAndExpand"
                         HorizontalOptions="Start"
-                        Clicked="Button_Clicked_3"/>
+                        Clicked="Logout_Clicked"/>
 
 
             </StackLayout>

@@ -15,23 +15,64 @@ namespace C971
     {
         public string selectedTerm;
         public bool firstLoad = true;
+        List<string> courseDisplay = new List<string>();
 
 
         public Terms()
         {
+            var dbCall = App.Database;
+
             InitializeComponent();
         }
 
         private async void EditTerm_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EditTerm());
+            if(selectedTerm == null)
+            {
+                await DisplayAlert("No Term Selected", "Select term to edit", "Ok");
+            }
+            else
+            {
+                Term term = new Term();
+                var terms = await App.Database.GetTermsAsync();
+                selectedTerm = TermPicker.SelectedItem.ToString();
+
+                foreach (var t in terms)
+                {
+                    if (selectedTerm == t.Name)
+                    {
+                        term = t;
+                    }
+                }
+                await Navigation.PushAsync(new EditTerm(term));
+            }
         }
 
-        private void DeleteTerm_Clicked(object sender, EventArgs e)
+        private async void DeleteTerm_Clicked(object sender, EventArgs e)
         {
             //// this button will delete an entire term
-            //StudentAcademicsDB studentAcademicsDB = new StudentAcademicsDB(App.Database.ToString());
-            //studentAcademicsDB.DeleteTermAsync();
+            if (selectedTerm == null)
+            {
+                await DisplayAlert("No Term Selected", "Select term to delete", "Ok");
+            }
+            else
+            {
+                CourseListView.ItemsSource = null;
+                Term term = new Term();
+                var terms = await App.Database.GetTermsAsync();
+                selectedTerm = TermPicker.SelectedItem.ToString();
+                courseDisplay.Clear();
+
+                foreach (var t in terms)
+                {
+                    if (selectedTerm == t.Name)
+                    {
+                        await App.Database.DeleteTermAsync(t);
+                    }
+                }
+                CourseListView.ItemsSource = courseDisplay;
+
+            }
         }
 
         private async void AddTerm_Clicked(object sender, EventArgs e)
@@ -39,66 +80,60 @@ namespace C971
             await Navigation.PushAsync(new AddTerm());
         }
 
-        //private void Button_Clicked_3(object sender, EventArgs e)
-        //{
-        //    // save
-        //}
-
-        private void Logout_Clicked(object sender, EventArgs e)
-        {
-            Application.Current.MainPage.Navigation.PopToRootAsync();   
-        }
-
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
+            TermPicker.Items.Clear(); // clears before every load so not to have duplicates or deleted terms
             var terms = await App.Database.GetTermsAsync();
-            //TermPicker.Items.Clear();
-            while (firstLoad)
+            
+            if(terms.Count > 0)
             {
                 for (int i = 0; i < terms.Count; i++)
                 {
                     TermPicker.Items.Add(terms[i].Name);
                 }
-                firstLoad = false;
             }
         }
 
         private async void TermPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedTerm = TermPicker.SelectedItem.ToString();
-            var terms = await App.Database.GetTermsAsync();
-            List<int> courses = new List<int>();
-            courses.Clear();
-            for (int i = 0; i < terms.Count; i++)
+            try
             {
-                if (selectedTerm == terms[i].Name)
+                selectedTerm = TermPicker.SelectedItem.ToString();
+                var terms = await App.Database.GetTermsAsync();
+                List<int> courses = new List<int>();
+                //courses.Clear();
+                for (int i = 0; i < terms.Count; i++)
                 {
-                    courses.Add(terms[i].CourseID);
-                    courses.Add(terms[i].Course2ID);
-                    courses.Add(terms[i].Course3ID);
-                    courses.Add(terms[i].Course4ID);
-                    courses.Add(terms[i].Course5ID);
-                    courses.Add(terms[i].Course6ID);                  
-                }
-            }
-
-            var allCourses = await App.Database.GetCoursesAsync();
-            List<string> courseDisplay = new List<string>();
-            foreach(var c in allCourses)
-            {
-                foreach(var n in courses)
-                {
-                    if(n == c.CourseID)
+                    if (selectedTerm == terms[i].Name)
                     {
-                        courseDisplay.Add(c.Name + " " + c.Status + " " + c.StartDate + "-" + c.EndDate);
+                        courses.Add(terms[i].CourseID);
+                        courses.Add(terms[i].Course2ID);
+                        courses.Add(terms[i].Course3ID);
+                        courses.Add(terms[i].Course4ID);
+                        courses.Add(terms[i].Course5ID);
+                        courses.Add(terms[i].Course6ID);
                     }
                 }
-            }
 
-            
-            CourseListView.ItemsSource = courseDisplay;
+                var allCourses = await App.Database.GetCoursesAsync();
+                foreach (var c in allCourses)
+                {
+                    foreach (var n in courses)
+                    {
+                        if (n == c.CourseID)
+                        {
+                            courseDisplay.Add(c.Name + " \\ " + c.Status + " \\ " + c.StartDate + "-" + c.EndDate);
+                        }
+                    }
+                }
+
+                CourseListView.ItemsSource = courseDisplay;
+            }
+            catch
+            {
+                await DisplayAlert("issue","Issues finding terms","ok");
+            }
         }
     }
 }

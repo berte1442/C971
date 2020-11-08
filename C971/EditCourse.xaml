@@ -9,20 +9,25 @@
         <ScrollView>
             <StackLayout>
                 <Label Text="Edit Course"
+                       FontSize="Large"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    FontSize="Medium"
                     Padding="0,20,0,0" />
 
                 <Label Text="Change Course Title"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
 
-                <Entry VerticalOptions="Start"
+                <Entry x:Name="CourseTitleEntry"
+                       PlaceholderColor="Green"
+                       TextColor="Green"
+                    VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
 
                 <Label Text="Edit Course Dates"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 <Grid Padding="30,0,0,0">
@@ -41,22 +46,54 @@
                            Grid.Column="1"
                            HorizontalOptions="Center"/>
 
-                    <DatePicker HorizontalOptions="Start"
+                    <DatePicker x:Name="StartDatePicker" 
+                                TextColor="Green"
+                        HorizontalOptions="Start"
                                 Grid.Row="1"/>
-                    <DatePicker HorizontalOptions="Center"
+                    <DatePicker x:Name="EndDatePicker" 
+                                TextColor="Green"
+                        HorizontalOptions="Center"
                                 Grid.Row="1"
                                 Grid.Column="1"/>
 
                 </Grid>
                 <Label Text="Course Status"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-            
+                <Picker x:Name="CourseStatusPicker"
+                        Margin="20,0,20,0"
+                        TextColor="Green">
+                    <Picker.Items>
+                    
+                        <x:String>Active</x:String>
+                        <x:String>Inactive</x:String>
+                        <x:String>Completed</x:String>
+                    
+                    </Picker.Items>
+                </Picker>
+
                 <Label Text="Course Instructor"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-            
+                <Picker x:Name="InstructorPicker"
+                        Margin="20,0,20,0"
+                        TextColor="Green">
+                    
+                </Picker>
+                <Entry x:Name="InstructorName"
+                       Margin="20,0,20,0"
+                       TextColor="Green"/>
+                <Entry x:Name="InstructorPhone"
+                       Margin="20,0,20,0"
+                       TextColor="Green"/>
+                <Entry x:Name="InstructorEmail"
+                       Margin="20,0,20,0"
+                       TextColor="Green"/>
+
                 <Label Text="Notes (Optional)"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
             
