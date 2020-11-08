@@ -138,11 +138,10 @@ namespace C971
                 }
 
                 CourseListView.ItemsSource = courseDisplay;
-                //courseDisplay.Clear();
             }
             catch
             {
-                await DisplayAlert("issue", "Issue finding terms", "ok");
+                await DisplayAlert("issue", "Term has been deleted", "ok");
             }
         }
     }
