@@ -14,12 +14,14 @@ namespace C971
     {
         bool firstLoad = true;
         List<int> addedCourses = new List<int>();
-        Term term = new Term();
         string selectedCourse;
 
         public AddTerm()
         {
             InitializeComponent();
+
+            StartDatePicker.MinimumDate = DateTime.Now.AddDays(1);
+            EndDatePicker.MinimumDate = DateTime.Now.AddMonths(6);
         }
 
         private async void AddCourse_Clicked(object sender, EventArgs e)
@@ -101,6 +103,9 @@ namespace C971
         {
             base.OnAppearing();
 
+            StartDatePicker.Date = DateTime.Now.AddDays(1);
+            EndDatePicker.Date = StartDatePicker.Date.AddMonths(6);
+
             var courses = await App.Database.GetCoursesAsync();
             //TermPicker.Items.Clear();
             while (firstLoad)
@@ -111,6 +116,16 @@ namespace C971
                 }
                 firstLoad = false;
             }
+        }
+
+        private void StartDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            EndDatePicker.MaximumDate = StartDatePicker.Date.AddMonths(6);
+            EndDatePicker.MinimumDate = StartDatePicker.Date.AddMonths(6);
+        }
+
+        private void EndDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
         }
     }
 }

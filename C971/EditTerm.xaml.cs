@@ -17,10 +17,14 @@ namespace C971
         string selectedCourse;
         List<int> courseList = new List<int>();
         List<int> removeList = new List<int>();
+        List<string> termCourseDisplay = new List<string>();
+
 
         public EditTerm(Term term)
         {
             InitializeComponent();
+
+            StartDatePicker.MinimumDate = DateTime.Now.AddDays(1);
 
             currentTerm = term;
         }
@@ -132,6 +136,9 @@ namespace C971
             var removeCourse = TermCoursesPicker.SelectedItem;
             Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
             removeList.Add(course.CourseID);
+
+            await DisplayAlert("Remove", "Course will be added to remove list", "OK");
+            TermCoursesPicker.SelectedIndex = -1;
         }
 
         private async void AddCourse_Clicked(object sender, EventArgs e)
@@ -145,7 +152,7 @@ namespace C971
         {
             base.OnAppearing();
 
-            //  Sets placeholder to term name
+            //  Sets text to term name
             TermTitleEntry.Text = currentTerm.Name;
             /////////////////////////////////////
             //sets displayed dates to select terms dates
@@ -166,7 +173,7 @@ namespace C971
                 termCourses.Add(currentTerm.Course6ID);
 
                 var allCourses = await App.Database.GetCoursesAsync();
-                List<string> termCourseDisplay = new List<string>();
+                //List<string> termCourseDisplay = new List<string>();
 
                 foreach (var c in allCourses)
                 {
@@ -199,6 +206,17 @@ namespace C971
 
                 firstLoad = false;
             }
+        }
+
+        private void StartDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            EndDatePicker.MaximumDate = StartDatePicker.Date.AddMonths(6);
+            EndDatePicker.MinimumDate = StartDatePicker.Date.AddMonths(6);
+        }
+
+        private void EndDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
         }
     }
 }

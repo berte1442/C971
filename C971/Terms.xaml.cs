@@ -64,23 +64,29 @@ namespace C971
             }
             else
             {
-                List<string> courseDisplay = new List<string>();
-                CourseListView.ItemsSource = null;
-                Term term = new Term();
-                var terms = await App.Database.GetTermsAsync();
-                selectedTerm = TermPicker.SelectedItem.ToString();
-
-                foreach (var t in terms)
+                var action = await DisplayAlert("Delete?", "Are you sure to delete this term?", "Yes", "No");
+                if (action)
                 {
-                    if (selectedTerm == t.Name)
-                    {
-                        await App.Database.DeleteTermAsync(t);
-                    }
-                }
-                TermPicker.SelectedIndex = -1;
-                TermPicker.Items.Remove(selectedTerm);
-                CourseListView.ItemsSource = courseDisplay;
+                    List<string> courseDisplay = new List<string>();
+                    CourseListView.ItemsSource = null;
+                    Term term = new Term();
+                    var terms = await App.Database.GetTermsAsync();
+                    selectedTerm = TermPicker.SelectedItem.ToString();
 
+                    foreach (var t in terms)
+                    {
+                        if (selectedTerm == t.Name)
+                        {
+                            await App.Database.DeleteTermAsync(t);
+                        }
+                    }
+                    TermPicker.SelectedIndex = -1;
+                    TermPicker.Items.Remove(selectedTerm);
+                    CourseListView.ItemsSource = courseDisplay;
+                    selectedTerm = null;
+                    DisplayAlert("Deleted", "Term successfully deleted", "OK");
+                }
+ 
             }
         }
 

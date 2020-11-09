@@ -42,11 +42,13 @@
 
                     <DatePicker x:Name="StartDatePicker" 
                         HorizontalOptions="Start"
-                                Grid.Row="1"/>
+                                Grid.Row="1"
+                                PropertyChanged="StartDatePicker_PropertyChanged"/>
                     <DatePicker x:Name="EndDatePicker" 
                         HorizontalOptions="Center"
                                 Grid.Row="1"
-                                Grid.Column="1"/>
+                                Grid.Column="1"
+                                PropertyChanged="EndDatePicker_PropertyChanged"/>
 
                 </Grid>
                 <Label Text="Add Courses"
