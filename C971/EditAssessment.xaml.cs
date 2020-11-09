@@ -12,7 +12,7 @@ namespace C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditAssessment : ContentPage
     {
-        public EditAssessment()
+        public EditAssessment(Assessment assessment)
         {
             InitializeComponent();
         }

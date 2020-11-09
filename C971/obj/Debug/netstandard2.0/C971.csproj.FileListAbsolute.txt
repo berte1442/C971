@@ -2,7 +2,6 @@ C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\C971.deps.json
 C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\C971.dll
 C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\ref\C971.dll
 C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\C971.pdb
-C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\AddAssessment.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\AddTerm.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\App.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\CourseInfo.xaml.g.cs
@@ -18,3 +17,5 @@ C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\ref\C971.dll
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\C971.pdb
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\LoginEntryPage.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\AssessmentDetails.xaml.g.cs
+C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\C971.csprojAssemblyReference.cache

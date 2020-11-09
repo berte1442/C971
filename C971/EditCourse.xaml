@@ -134,18 +134,41 @@
                        HorizontalOptions="Center"/>
                 <Grid>
                     <Grid>
-                        <CheckBox HorizontalOptions="End"/>
-                        <Label x:Name="Assessment1" 
-                            Text="Assessment 1 - PA"
-                            Grid.Column="1"/>
+                        <Label Text="PA"
+                               HorizontalOptions="End"/>
+                        <CheckBox x:Name="PAAssessmentCheckBox"
+                                  HorizontalOptions="Center"
+                                  Grid.Column="1"
+                                  CheckedChanged="PAAssessmentCheckBox_CheckedChanged"/>
+                        <Label x:Name="Assessment1"
+                               HorizontalOptions="Start"
+                            Grid.Column="2"/>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <CheckBox HorizontalOptions="End"/>
+                        <Label Text="OA"
+                               HorizontalOptions="End"/>
+                        <CheckBox x:Name="OAAssessmentCheckBox"
+                            HorizontalOptions="Center"
+                                  Grid.Column="1"
+                                  CheckedChanged="OAAssessmentCheckBox_CheckedChanged"/>
                         <Label x:Name="Assessment2"
-                            Grid.Column="1"
-                            Text="Assessment 2 - OA"/>
+                               HorizontalOptions="Start"
+                            Grid.Column="2"/>
                     </Grid>
                 </Grid>
+                <Grid>
+                     <Button Text="Delete"
+                            TextColor="White"
+                            BackgroundColor="Red"
+                            Clicked="DeleteAssessment_Clicked"/>
+                    
+                     <Button Text="Edit"
+                            TextColor="White"
+                            BackgroundColor="Blue"
+                            Clicked="EditAssessment_Clicked"
+                             Grid.Column="1"/>
+                </Grid>
+
                 <Grid>
                     
                     <Picker x:Name="PAAssessmentPicker"
@@ -163,22 +186,14 @@
                               Grid.Column="1"
                               CheckedChanged="OACheckbox_CheckedChanged"/>
                 </Grid>
-                <Grid>
-                    <Button Text="Edit"
-                            TextColor="White"
-                            BackgroundColor="Blue"
-                            Clicked="EditAssessment_Clicked"/>
-                    <Button Grid.Column="1"
-                            Text="Delete"
-                            TextColor="White"
-                            BackgroundColor="Red"
-                            Clicked="DeleteAssessment_Clicked"/>
-                    <Button Grid.Column="2"
-                            Text="Add"
-                            TextColor="White"
-                            BackgroundColor="Green"
-                            Clicked="AddAssessment_Clicked"/>
-                </Grid>
+
+                <Button Text="Add"
+                        TextColor="White"
+                        BackgroundColor="Green"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        Clicked="AddAssessment_Clicked"/>
+
                 <Button Text="Save"
                         BackgroundColor="Yellow"
                         WidthRequest="200"

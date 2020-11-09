@@ -28,7 +28,7 @@ namespace C971
             }
         }
 
-        protected async override void OnStart()
+        protected override void OnStart()
         {
         }
 
