@@ -26,6 +26,10 @@ namespace C971
         {
             return database.Table<Instructor>().Where(i => i.InstructorID == id).FirstOrDefaultAsync();
         }
+        public Task<Instructor> GetInstructorAsync(string name)
+        {
+            return database.Table<Instructor>().Where(i => i.Name == name).FirstOrDefaultAsync();
+        }
         public Task<int> SaveInstructorAsync(Instructor instructor)
         {
             if(instructor.InstructorID != 0)
@@ -43,13 +47,17 @@ namespace C971
         }
         // Assessment Methods - return list of assessments - return assessment - save/update assessment - delete assessment
 
-        public Task<List<Assessment>> GetAssessmentssAsync()
+        public Task<List<Assessment>> GetAssessmentsAsync()
         {
             return database.Table<Assessment>().ToListAsync();
         }
         public Task<Assessment> GetAssessmentAsync(int id)
         {
             return database.Table<Assessment>().Where(i => i.AssessmentID == id).FirstOrDefaultAsync();
+        }
+        public Task<Assessment> GetAssessmentAsync(string name)
+        {
+            return database.Table<Assessment>().Where(i => i.Name == name).FirstOrDefaultAsync();
         }
         public Task<int> SaveAssessmentAsync(Assessment assessment)
         {

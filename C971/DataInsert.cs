@@ -53,51 +53,61 @@ namespace C971
             App.Database.SaveInstructorAsync(instructor6);
 
             Assessment assessment = new Assessment();
+            assessment.Name = "assessment1";
             assessment.AssessmentType = "PA";
             assessment.AssessmentDescription = "Presentation";
             App.Database.SaveAssessmentAsync(assessment);
 
             Assessment assessment2 = new Assessment();
+            assessment2.Name = "assessment2";
             assessment2.AssessmentType = "PA";
             assessment2.AssessmentDescription = "Coding Challenge";
             App.Database.SaveAssessmentAsync(assessment2);
 
             Assessment assessment3 = new Assessment();
+            assessment3.Name = "assessment3";
             assessment3.AssessmentType = "PA";
             assessment3.AssessmentDescription = "Proposal Paper";
             App.Database.SaveAssessmentAsync(assessment3);
 
             Assessment assessment4 = new Assessment();
+            assessment4.Name = "assessment4";
             assessment4.AssessmentType = "PA";
             assessment4.AssessmentDescription = "Essay";
             App.Database.SaveAssessmentAsync(assessment4);
 
             Assessment assessment5 = new Assessment();
+            assessment5.Name = "assessment5";
             assessment5.AssessmentType = "PA";
             assessment5.AssessmentDescription = "Mobile Application";
             App.Database.SaveAssessmentAsync(assessment5);
 
             Assessment assessment6 = new Assessment();
+            assessment6.Name = "assessment6";
             assessment6.AssessmentType = "OA";
             assessment6.AssessmentDescription = "40 Question Test";
             App.Database.SaveAssessmentAsync(assessment6);
 
             Assessment assessment7 = new Assessment();
+            assessment7.Name = "assessment7";
             assessment7.AssessmentType = "OA";
             assessment7.AssessmentDescription = "50 Question Test";
             App.Database.SaveAssessmentAsync(assessment7);
 
             Assessment assessment8 = new Assessment();
+            assessment8.Name = "assessment8";
             assessment8.AssessmentType = "OA";
             assessment8.AssessmentDescription = "60 Question Test";
             App.Database.SaveAssessmentAsync(assessment8);
 
             Assessment assessment9 = new Assessment();
+            assessment9.Name = "assessment9";
             assessment9.AssessmentType = "OA";
             assessment9.AssessmentDescription = "CompTIA Certification";
             App.Database.SaveAssessmentAsync(assessment9);
 
             Assessment assessment10 = new Assessment();
+            assessment10.Name = "assessment10";
             assessment10.AssessmentType = "OA";
             assessment10.AssessmentDescription = "Microsoft Certification";
             App.Database.SaveAssessmentAsync(assessment10);
@@ -198,30 +208,30 @@ namespace C971
             course12.Assessment2ID = assessment9.AssessmentID;
             App.Database.SaveCourseAsync(course12);
 
-            //Term term = new Term();
-            //term.Name = "Term1";
-            //term.StartDate = DateTime.Now.Date;
-            //term.EndDate = DateTime.Now.AddMonths(6).Date;
-            //term.CourseID = course.CourseID;
-            //term.Course2ID = course2.CourseID;
-            //term.Course3ID = course3.CourseID;
-            //term.Course4ID = course4.CourseID;
-            //term.Course5ID = course5.CourseID;
-            //term.Course6ID = course6.CourseID;
-            //App.Database.SaveTermAsync(term);
+            Term term = new Term();
+            term.Name = "Term1";
+            term.StartDate = DateTime.Now.Date;
+            term.EndDate = DateTime.Now.AddMonths(6).Date;
+            term.CourseID = course.CourseID;
+            term.Course2ID = course2.CourseID;
+            term.Course3ID = course3.CourseID;
+            term.Course4ID = course4.CourseID;
+            term.Course5ID = course5.CourseID;
+            term.Course6ID = course6.CourseID;
+            App.Database.SaveTermAsync(term);
 
-            //Term term2 = new Term();
-            //term2.Name = "Term2";
-            //term2.StartDate = DateTime.Now.AddMonths(6).Date;
-            //term2.EndDate = DateTime.Now.AddMonths(12).Date;
-            //term2.CourseID = course7.CourseID;
-            //term2.Course2ID = course8.CourseID;
-            //term2.Course3ID = course9.CourseID;
-            //term2.Course4ID = course10.CourseID;
-            //term2.Course5ID = course11.CourseID;
-            //term2.Course6ID = course12.CourseID;
-            //App.Database.SaveTermAsync(term2);
-            
+            Term term2 = new Term();
+            term2.Name = "Term2";
+            term2.StartDate = DateTime.Now.AddMonths(6).Date;
+            term2.EndDate = DateTime.Now.AddMonths(12).Date;
+            term2.CourseID = course7.CourseID;
+            term2.Course2ID = course8.CourseID;
+            term2.Course3ID = course9.CourseID;
+            term2.Course4ID = course10.CourseID;
+            term2.Course5ID = course11.CourseID;
+            term2.Course6ID = course12.CourseID;
+            App.Database.SaveTermAsync(term2);
+
         }
         public async void ClearDatabase()
         {
@@ -232,7 +242,7 @@ namespace C971
                 await App.Database.DeleteCourseAsync(c);
             }
 
-            var assessments = await App.Database.GetAssessmentssAsync();
+            var assessments = await App.Database.GetAssessmentsAsync();
 
             foreach (var a in assessments)
             {

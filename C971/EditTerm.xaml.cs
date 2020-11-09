@@ -41,7 +41,7 @@ namespace C971
 
         private async void EditCourse_Clicked(object sender, EventArgs e)
         {
-            selectedCourse = TermCoursesPicker.SelectedItem.ToString();
+            selectedCourse = TermCoursesPicker.SelectedItem?.ToString();
 
             if (selectedCourse == null)
             {
@@ -49,17 +49,18 @@ namespace C971
             }
             else
             {
-                Course course = new Course();
-                var allCourses = await App.Database.GetCoursesAsync();
+                Course course = await App.Database?.GetCourseAsync(selectedCourse);
+                Term term = await App.Database?.GetTermAsync(currentTerm.TermID);
+                //var allCourses = await App.Database.GetCoursesAsync();
 
-                foreach (var c in allCourses)
-                {
-                    if (c.Name == selectedCourse)
-                    {
-                        course = c;
-                    }
-                }
-                await Navigation.PushAsync(new EditCourse(course));
+                //foreach (var c in allCourses)
+                //{
+                //    if (c.Name == selectedCourse)
+                //    {
+                //        course = c;
+                //    }
+                //}
+                await Navigation.PushAsync(new EditCourse(course, term));
             } 
         }
 

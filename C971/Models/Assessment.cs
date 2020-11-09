@@ -12,7 +12,12 @@ namespace C971
         {
             get;
             set;
-        } 
+        }
+        public string Name
+        {
+            get;
+            set;
+        }
         public string AssessmentType
         {
             get;

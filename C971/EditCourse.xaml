@@ -97,7 +97,8 @@
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
             
-                <Editor Text="This is a lot of text.  I'm trying to see what this looks like on my phone when I type a lot of stuff here."
+                <Editor x:Name="Notes"
+                    Placeholder="Write your notes for this course here"
                         Margin="20,0,20,0"/>
 
                 <Grid>
@@ -134,27 +135,49 @@
                 <Grid>
                     <Grid>
                         <CheckBox HorizontalOptions="End"/>
-                        <Label Text="Assessment 1"
-                               Grid.Column="1"/>
+                        <Label x:Name="Assessment1" 
+                            Text="Assessment 1 - PA"
+                            Grid.Column="1"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <CheckBox HorizontalOptions="End"/>
-                        <Label Grid.Column="1"
-                            Text="Assessment 2"/>
+                        <Label x:Name="Assessment2"
+                            Grid.Column="1"
+                            Text="Assessment 2 - OA"/>
                     </Grid>
                 </Grid>
                 <Grid>
+                    
+                    <Picker x:Name="PAAssessmentPicker"
+                            Margin="20,0,0,0"/>
+                    <Picker x:Name="OAAssessmentPicker"
+                            Margin="0,0,20,0"
+                            Grid.Column="1"/>
+                    <CheckBox x:Name="PACheckbox"
+                              HorizontalOptions="Center"
+                              Grid.Row="1"
+                              CheckedChanged="PACheckbox_CheckedChanged"/>
+                    <CheckBox x:Name="OACheckbox"
+                              HorizontalOptions="Center"
+                              Grid.Row="1"
+                              Grid.Column="1"
+                              CheckedChanged="OACheckbox_CheckedChanged"/>
+                </Grid>
+                <Grid>
                     <Button Text="Edit"
+                            TextColor="White"
                             BackgroundColor="Blue"
-                            Clicked="Button_Clicked"/>
+                            Clicked="EditAssessment_Clicked"/>
                     <Button Grid.Column="1"
                             Text="Delete"
+                            TextColor="White"
                             BackgroundColor="Red"
-                            Clicked="Button_Clicked_1"/>
+                            Clicked="DeleteAssessment_Clicked"/>
                     <Button Grid.Column="2"
                             Text="Add"
+                            TextColor="White"
                             BackgroundColor="Green"
-                            Clicked="Button_Clicked_2"/>
+                            Clicked="AddAssessment_Clicked"/>
                 </Grid>
                 <Button Text="Save"
                         BackgroundColor="Yellow"
@@ -162,19 +185,20 @@
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Margin="0,20,0,0"
-                        Clicked="Button_Clicked_3"/>
+                        Clicked="Save_Clicked"/>
                 <Button Text="Cancel"
+                        TextColor="White"
                         BackgroundColor="Red"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Margin="0,20,0,20"
-                        Clicked="Button_Clicked_4"/>
-                <Button Text="Log out"
+                        Clicked="Cancel_Clicked"/>
+                <Button Text="Home"
                         WidthRequest="100"
                         VerticalOptions="EndAndExpand"
                         HorizontalOptions="Start"
-                        Clicked="Button_Clicked_5"/>
+                        Clicked="Home_Clicked"/>
 
             </StackLayout>
         </ScrollView>
