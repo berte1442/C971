@@ -127,9 +127,9 @@ namespace C971
 
         private void PACheckbox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (PACheckBox.IsChecked)
+            if (PACheckbox.IsChecked)
             {
-                OACheckBox.IsChecked = false;
+                OACheckbox.IsChecked = false;
                 string assessmentType = "PA";
             }
         }
