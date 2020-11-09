@@ -99,12 +99,6 @@
                         HorizontalOptions="Center"
                         Clicked="Cancel_Clicked"/>
 
-                <Button Text="Log out"
-                        WidthRequest="100"
-                        HorizontalOptions="Start"
-                        VerticalOptions="EndAndExpand"
-                        Clicked="Button_Clicked_3"/>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

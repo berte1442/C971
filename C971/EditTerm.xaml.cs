@@ -136,11 +136,6 @@ namespace C971
             Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        private void Button_Clicked_3(object sender, EventArgs e)
-        {
-            Application.Current.MainPage.Navigation.PopToRootAsync();   
-        }
-
         private async void RemoveCourse_Clicked(object sender, EventArgs e)
         {
             var removeCourse = TermCoursesPicker.SelectedItem;
@@ -156,6 +151,7 @@ namespace C971
             var addedCourse = AllCoursesPicker.SelectedItem;
             Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
             courseList.Add(course.CourseID);
+            await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
             AllCoursesPicker.SelectedIndex = -1;
         }
 
@@ -227,7 +223,9 @@ namespace C971
                 StartDatePicker.MaximumDate = currentTerm.StartDate;
                 EndDatePicker.MinimumDate = currentTerm.EndDate;
                 EndDatePicker.MaximumDate = currentTerm.EndDate;
-                DisplayAlert("Term in progress", "Term dates cannot be changed once term has started.", "OK");
+
+                // display was taken out because it was taking forever to clear out 
+                //DisplayAlert("Term in progress", "Term dates cannot be changed once term has started.", "OK");
             }
             else
             {

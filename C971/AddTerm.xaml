@@ -77,13 +77,6 @@
                         HorizontalOptions="Center"
                         Clicked="Cancel_Clicked"/>
 
-                <Button Text="Home"
-                        WidthRequest="100"
-                        VerticalOptions="EndAndExpand"
-                        HorizontalOptions="Start"
-                        Clicked="Logout_Clicked"/>
-
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

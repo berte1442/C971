@@ -93,12 +93,6 @@ namespace C971
         {
             Application.Current.MainPage.Navigation.PopAsync();
         }
-
-        private void Logout_Clicked(object sender, EventArgs e)
-        {
-            Application.Current.MainPage.Navigation.PopToRootAsync();
-        }
-
         protected async override void OnAppearing()
         {
             base.OnAppearing();
