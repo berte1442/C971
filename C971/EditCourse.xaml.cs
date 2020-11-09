@@ -40,11 +40,11 @@ namespace C971
         {
             string assessmentName = null;
             
-            if (PACheckbox.IsChecked && PAAssessmentPicker.SelectedIndex >= 0)
+            if (PAAssessmentCheckBox.IsChecked && Assessment1.Text != null)
             {
                 assessmentName = PAAssessmentPicker.SelectedItem.ToString();
             }
-            else if(OACheckbox.IsChecked && OAAssessmentPicker.SelectedIndex >= 0)
+            else if(OAAssessmentCheckBox.IsChecked && Assessment2.Text != null)
             {
                 assessmentName = OAAssessmentPicker.SelectedItem.ToString();
             }
