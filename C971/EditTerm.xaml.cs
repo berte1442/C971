@@ -22,11 +22,21 @@ namespace C971
 
         public EditTerm(Term term)
         {
+            currentTerm = term;
+
             InitializeComponent();
 
-            StartDatePicker.MinimumDate = DateTime.Now.AddDays(1);
-
-            currentTerm = term;
+            if(term.StartDate < DateTime.Now)
+            {
+                StartDatePicker.MinimumDate = term.StartDate;
+                StartDatePicker.MaximumDate = term.StartDate;
+                EndDatePicker.MinimumDate = term.EndDate;
+                EndDatePicker.MaximumDate = term.EndDate;
+            }
+            else
+            {
+                StartDatePicker.MinimumDate = DateTime.Now.AddDays(1);
+            }
         }
 
         private async void EditCourse_Clicked(object sender, EventArgs e)
@@ -146,6 +156,7 @@ namespace C971
             var addedCourse = AllCoursesPicker.SelectedItem;
             Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
             courseList.Add(course.CourseID);
+            AllCoursesPicker.SelectedIndex = -1;
         }
 
         protected async override void OnAppearing()
@@ -210,8 +221,19 @@ namespace C971
 
         private void StartDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            EndDatePicker.MaximumDate = StartDatePicker.Date.AddMonths(6);
-            EndDatePicker.MinimumDate = StartDatePicker.Date.AddMonths(6);
+            if(currentTerm.StartDate <= DateTime.Now)
+            {
+                StartDatePicker.MinimumDate = currentTerm.StartDate;
+                StartDatePicker.MaximumDate = currentTerm.StartDate;
+                EndDatePicker.MinimumDate = currentTerm.EndDate;
+                EndDatePicker.MaximumDate = currentTerm.EndDate;
+                DisplayAlert("Term in progress", "Term dates cannot be changed once term has started.", "OK");
+            }
+            else
+            {
+                EndDatePicker.MaximumDate = StartDatePicker.Date.AddMonths(6);
+                EndDatePicker.MinimumDate = StartDatePicker.Date.AddMonths(6);
+            }
         }
 
         private void EndDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
