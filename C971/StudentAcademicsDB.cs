@@ -114,6 +114,10 @@ namespace C971
         {
             return database.Table<Term>().Where(i => i.TermID == id).FirstOrDefaultAsync();
         }
+        public Task<Term> GetTermAsync(string name)
+        {
+            return database.Table<Term>().Where(i => i.Name == name).FirstOrDefaultAsync();
+        }
         public Task<int> SaveTermAsync(Term term)
         {
             if (term.TermID != 0)

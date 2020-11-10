@@ -141,7 +141,14 @@ namespace C971
         {
             var removeCourse = TermCoursesPicker.SelectedItem;
             Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
-            removeList.Add(course.CourseID);
+            if(course.Status.ToUpper() == "ACTIVE" || course.Status.ToUpper() == "COMPLETE")
+            {
+                await DisplayAlert("Restricted", "Course has already started and cannot be removed", "OK");
+            }
+            else
+            {
+                removeList.Add(course.CourseID);
+            }
 
             await DisplayAlert("Remove", "Course will be added to remove list", "OK");
             TermCoursesPicker.SelectedIndex = -1;
@@ -151,9 +158,22 @@ namespace C971
         {
             var addedCourse = AllCoursesPicker.SelectedItem;
             Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
-            courseList.Add(course.CourseID);
-            await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
-            AllCoursesPicker.SelectedIndex = -1;
+
+            if(currentTerm.CourseID != course.CourseID && currentTerm.Course2ID != course.CourseID && currentTerm.Course3ID !=
+                course.CourseID && currentTerm.Course4ID != course.CourseID && currentTerm.Course5ID != course.CourseID &&
+                currentTerm.Course6ID != course.CourseID)
+            {
+                course.StartDate = DateTime.Now.AddDays(30);
+                courseList.Add(course.CourseID);
+                await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
+                AllCoursesPicker.SelectedIndex = -1;
+                //AllCoursesPicker.Items.Remove(addedCourse.ToString());
+                //TermCoursesPicker.Items.Add(addedCourse.ToString());
+            }
+            else
+            {
+                await DisplayAlert("Error", "Course already assigned to term", "OK");
+            }
         }
 
         protected async override void OnAppearing()

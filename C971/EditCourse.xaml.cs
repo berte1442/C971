@@ -21,9 +21,16 @@ namespace C971
 
             InitializeComponent();
 
-            if(course.Status == "Inactive")
+            if(course.Status.ToUpper() == "INACTIVE")
             {
-                StartDatePicker.MinimumDate = DateTime.Now;
+                if(DateTime.Now > term.StartDate)
+                {
+                    StartDatePicker.MinimumDate = DateTime.Now;
+                }
+                else
+                {
+                    StartDatePicker.MinimumDate = term.StartDate;
+                }
             }
             else
             {
@@ -219,8 +226,7 @@ namespace C971
             }
             InstructorPicker.ItemsSource = instructorNames;
 
-            // code below throws null exception - AssessmentIDs are 0 - assessment is never found, therefore assessment.Name = null
-
+            // sets assessment pickers and assessment labels
 
             var assessments = await App.Database.GetAssessmentsAsync();
             List<string> paAssessmentNames = new List<string>();
@@ -243,7 +249,6 @@ namespace C971
                     if(a.AssessmentID == currentCourse.Assessment2ID)
                     {
                         Assessment2.Text = a.Name;
-
                     }
                 }
             }

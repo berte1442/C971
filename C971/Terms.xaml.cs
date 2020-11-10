@@ -34,23 +34,14 @@ namespace C971
 
         private async void EditTerm_Clicked(object sender, EventArgs e)
         {
-            if(selectedTerm == null)
+            if (TermPicker.SelectedIndex == -1)
             {
                 await DisplayAlert("No Term Selected", "Select term to edit", "Ok");
             }
             else
-            {
-                Term term = new Term();
-                var terms = await App.Database.GetTermsAsync();
-                selectedTerm = TermPicker.SelectedItem.ToString();
+            {           
+                Term term = await App.Database.GetTermAsync(TermPicker.SelectedItem.ToString());
 
-                foreach (var t in terms)
-                {
-                    if (selectedTerm == t.Name)
-                    {
-                        term = t;
-                    }
-                }
                 await Navigation.PushAsync(new EditTerm(term));
             }
         }
@@ -58,7 +49,7 @@ namespace C971
         private async void DeleteTerm_Clicked(object sender, EventArgs e)
         {
             //// this button will delete an entire term
-            if (selectedTerm == null)
+            if (TermPicker.SelectedIndex == -1)
             {
                 await DisplayAlert("No Term Selected", "Select term to delete", "Ok");
             }
@@ -141,7 +132,13 @@ namespace C971
                     {
                         if (n == c.CourseID)
                         {
-                            courseDisplay.Add(c.Name + " \\ " + c.Status + " \\ " + c.StartDate + "-" + c.EndDate);
+                            if(c.Status.ToUpper() == "INACTIVE" && c.StartDate < DateTime.Now)
+                            {
+                                //c.Status = "Active";
+                                await App.Database.SaveCourseAsync(c);
+
+                            }
+                            courseDisplay.Add(c.Name + " \\ " + c.Status + " \\ " + c.StartDate.ToShortDateString() + "-" + c.EndDate.ToShortDateString());
                         }
                     }
                 }
