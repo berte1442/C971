@@ -13,12 +13,35 @@
                     HorizontalOptions="Center"
                     FontSize="Medium"
                     Padding="0,20,0,0" />
+                <Grid Padding="0,40,0,0">
+                    <Button Text="Edit Term"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Blue"
+                        WidthRequest="200"
+                        Clicked="EditTerm_Clicked"/>
+                    <Button Text="Delete Term"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Red"
+                        WidthRequest="200"
+                        Clicked="DeleteTerm_Clicked"
+                        Grid.Column="1"/>
+                    <Button Text="Add Term"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Green"
+                        WidthRequest="200"
+                        Clicked="AddTerm_Clicked"
+                        Grid.Column="2"/>
+                </Grid>
                 <Label Text="Select Term"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
                     Padding="0,40,0,0"/>
-
-
                 <StackLayout Padding="20,0,20,0" BackgroundColor="Green"
                              HeightRequest="300">
                     <Picker x:Name="TermPicker" TitleColor="DarkGreen" SelectedIndexChanged="TermPicker_SelectedIndexChanged">
@@ -26,30 +49,28 @@
 
                     <ListView x:Name="CourseListView"/>
 
-
                 </StackLayout>
-                <Button Text="Edit Term"
-                    TextColor="White"
+                <Label Text="Select Course"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    BackgroundColor="Blue"
-                    WidthRequest="200"
-                    Clicked="EditTerm_Clicked"/>
-                <Button Text="Delete Term"
-                    TextColor="White"
-                    VerticalOptions="Start"
-                    HorizontalOptions="Center"
-                    BackgroundColor="Red"
-                    WidthRequest="200"
-                    Clicked="DeleteTerm_Clicked"/>
-                <Button Text="Add Term"
-                    TextColor="White"
-                    VerticalOptions="Start"
-                    HorizontalOptions="Center"
-                    BackgroundColor="Green"
-                    WidthRequest="200"
-                    Clicked="AddTerm_Clicked"/>
-
+                    Padding="0,0,0,20"/>
+                <Grid>
+                    <Button Text="Edit Course"
+                            TextColor="White"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Blue"
+                            WidthRequest="200"
+                            Clicked="EditCourse_Clicked"/>
+                    <Button Text="Course Info"
+                            TextColor="White"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Green"
+                            WidthRequest="200"
+                            Clicked="CourseInfo_Clicked"
+                            Grid.Column="1"/>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -13,6 +13,7 @@ namespace C971
             get;
             set;
         }
+        [Unique]
         public string Name
         {
             get;

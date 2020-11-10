@@ -13,7 +13,7 @@
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
                     Padding="0,20,0,0" />
-
+                
                 <Label Text="Change Course Title"
                        FontSize="Large"
                        HorizontalOptions="Center"
@@ -61,7 +61,20 @@
                        FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-                <Picker x:Name="CourseStatusPicker"
+                <Grid>
+                    <Label x:Name="StatusLabel"
+                       HorizontalOptions="Center"
+                           Padding="20,0,0,0"/>
+                    <CheckBox x:Name="CompleteCheckbox"
+                              HorizontalOptions="End"
+                              Grid.Column="1"/>
+                    <Label Text="Course Completed"
+                           Grid.Column="2"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           Padding="0,0,20,0"/>
+                </Grid>
+                <!--<Picker x:Name="CourseStatusPicker"
                         Margin="20,0,20,0"
                         TextColor="Green">
                     <Picker.Items>
@@ -71,24 +84,28 @@
                         <x:String>Completed</x:String>
                     
                     </Picker.Items>
-                </Picker>
+                </Picker>-->
 
                 <Label Text="Course Instructor"
                        FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 <Picker x:Name="InstructorPicker"
+                        Title="Select Course Instructor"
                         Margin="20,0,20,0"
-                        TextColor="Green">
-                    
+                        TextColor="Green"
+                        SelectedIndexChanged="InstructorPicker_SelectedIndexChanged">
                 </Picker>
                 <Entry x:Name="InstructorName"
+                       Placeholder="Name"
                        Margin="20,0,20,0"
                        TextColor="Green"/>
                 <Entry x:Name="InstructorPhone"
+                       Placeholder="Phone Number"
                        Margin="20,0,20,0"
                        TextColor="Green"/>
                 <Entry x:Name="InstructorEmail"
+                       Placeholder="Email Address"
                        Margin="20,0,20,0"
                        TextColor="Green"/>
 
@@ -168,21 +185,25 @@
                             Clicked="EditAssessment_Clicked"
                              Grid.Column="1"/>
                 </Grid>
-
-                <Grid>
-                    
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+                <Grid Margin="0,20,0,0">
+                    <Label Text="Select PA"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Select OA"
+                           HorizontalOptions="Center"
+                           Grid.Column="1"/>
                     <Picker x:Name="PAAssessmentPicker"
-                            Margin="20,0,0,0"/>
+                            Grid.Row="1"/>
                     <Picker x:Name="OAAssessmentPicker"
-                            Margin="0,0,20,0"
+                            Grid.Row="1"
                             Grid.Column="1"/>
                     <CheckBox x:Name="PACheckbox"
                               HorizontalOptions="Center"
-                              Grid.Row="1"
+                              Grid.Row="2"
                               CheckedChanged="PACheckbox_CheckedChanged"/>
                     <CheckBox x:Name="OACheckbox"
                               HorizontalOptions="Center"
-                              Grid.Row="1"
+                              Grid.Row="2"
                               Grid.Column="1"
                               CheckedChanged="OACheckbox_CheckedChanged"/>
                 </Grid>

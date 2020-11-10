@@ -136,28 +136,28 @@ namespace C971
 
         // Student Methods - return lists of students - return student - save/update student - delete student
 
-        public Task<List<Student>> GetStudentsAsync()
-        {
-            return database.Table<Student>().ToListAsync();
-        }
-        public Task<Student> GetStudentAsync(int id)
-        {
-            return database.Table<Student>().Where(i => i.StudentID == id).FirstOrDefaultAsync();
-        }
-        public Task<int> SaveStudentAsync(Student student)
-        {
-            if (student.StudentID != 0)
-            {
-                return database.UpdateAsync(student);
-            }
-            else
-            {
-                return database.InsertAsync(student);
-            }
-        }
-        public Task<int> DeleteStudentAsync(Student student)
-        {
-            return database.DeleteAsync(student);
-        }
+        //public Task<List<Student>> GetStudentsAsync()
+        //{
+        //    return database.Table<Student>().ToListAsync();
+        //}
+        //public Task<Student> GetStudentAsync(int id)
+        //{
+        //    return database.Table<Student>().Where(i => i.StudentID == id).FirstOrDefaultAsync();
+        //}
+        //public Task<int> SaveStudentAsync(Student student)
+        //{
+        //    if (student.StudentID != 0)
+        //    {
+        //        return database.UpdateAsync(student);
+        //    }
+        //    else
+        //    {
+        //        return database.InsertAsync(student);
+        //    }
+        //}
+        //public Task<int> DeleteStudentAsync(Student student)
+        //{
+        //    return database.DeleteAsync(student);
+        //}
     }
 }

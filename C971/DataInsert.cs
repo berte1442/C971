@@ -208,29 +208,29 @@ namespace C971
             course12.Assessment2ID = assessment9.AssessmentID;
             App.Database.SaveCourseAsync(course12);
 
-            Term term = new Term();
-            term.Name = "Term1";
-            term.StartDate = DateTime.Now.Date;
-            term.EndDate = DateTime.Now.AddMonths(6).Date;
-            term.CourseID = course.CourseID;
-            term.Course2ID = course2.CourseID;
-            term.Course3ID = course3.CourseID;
-            term.Course4ID = course4.CourseID;
-            term.Course5ID = course5.CourseID;
-            term.Course6ID = course6.CourseID;
-            App.Database.SaveTermAsync(term);
+            //Term term = new Term();
+            //term.Name = "Term1";
+            //term.StartDate = DateTime.Now.Date;
+            //term.EndDate = DateTime.Now.AddMonths(6).Date;
+            //term.CourseID = course.CourseID;
+            //term.Course2ID = course2.CourseID;
+            //term.Course3ID = course3.CourseID;
+            //term.Course4ID = course4.CourseID;
+            //term.Course5ID = course5.CourseID;
+            //term.Course6ID = course6.CourseID;
+            //App.Database.SaveTermAsync(term);
 
-            Term term2 = new Term();
-            term2.Name = "Term2";
-            term2.StartDate = DateTime.Now.AddMonths(6).Date;
-            term2.EndDate = DateTime.Now.AddMonths(12).Date;
-            term2.CourseID = course7.CourseID;
-            term2.Course2ID = course8.CourseID;
-            term2.Course3ID = course9.CourseID;
-            term2.Course4ID = course10.CourseID;
-            term2.Course5ID = course11.CourseID;
-            term2.Course6ID = course12.CourseID;
-            App.Database.SaveTermAsync(term2);
+            //Term term2 = new Term();
+            //term2.Name = "Term2";
+            //term2.StartDate = DateTime.Now.AddMonths(6).Date;
+            //term2.EndDate = DateTime.Now.AddMonths(12).Date;
+            //term2.CourseID = course7.CourseID;
+            //term2.Course2ID = course8.CourseID;
+            //term2.Course3ID = course9.CourseID;
+            //term2.Course4ID = course10.CourseID;
+            //term2.Course5ID = course11.CourseID;
+            //term2.Course6ID = course12.CourseID;
+            //App.Database.SaveTermAsync(term2);
 
         }
         public async void ClearDatabase()

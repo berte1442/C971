@@ -36,6 +36,9 @@ namespace C971
                 {
                     if (selectedCourse == c.Name)
                     {
+                        c.StartDate = DateTime.Now.AddMonths(1);
+                        c.EndDate = c.StartDate.AddMonths(1);
+                        await App.Database.SaveCourseAsync(c);
                         addedCourses.Add(c.CourseID);
                     }
                 }
@@ -115,7 +118,7 @@ namespace C971
         private void StartDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             EndDatePicker.MaximumDate = StartDatePicker.Date.AddMonths(6);
-            EndDatePicker.MinimumDate = StartDatePicker.Date.AddMonths(6);
+            EndDatePicker.Date = StartDatePicker.Date.AddMonths(6);
         }
 
         private void EndDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

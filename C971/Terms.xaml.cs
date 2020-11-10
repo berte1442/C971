@@ -75,7 +75,7 @@ namespace C971
                     TermPicker.Items.Remove(selectedTerm);
                     CourseListView.ItemsSource = courseDisplay;
                     selectedTerm = null;
-                    DisplayAlert("Deleted", "Term successfully deleted", "OK");
+                    await DisplayAlert("Deleted", "Term successfully deleted", "OK");
                 }
  
             }
@@ -126,6 +126,8 @@ namespace C971
                 }
 
                 var allCourses = await App.Database.GetCoursesAsync();
+
+                string courseDates = null;
                 foreach (var c in allCourses)
                 {
                     foreach (var n in courses)
@@ -134,11 +136,14 @@ namespace C971
                         {
                             if(c.Status.ToUpper() == "INACTIVE" && c.StartDate < DateTime.Now)
                             {
-                                //c.Status = "Active";
-                                await App.Database.SaveCourseAsync(c);
-
+                                courseDates = "Course dates not set";
+                                //await App.Database.SaveCourseAsync(c);
                             }
-                            courseDisplay.Add(c.Name + " \\ " + c.Status + " \\ " + c.StartDate.ToShortDateString() + "-" + c.EndDate.ToShortDateString());
+                            else
+                            {
+                                courseDates = c.StartDate.ToShortDateString() + "-" + c.EndDate.ToShortDateString();
+                            }
+                            courseDisplay.Add(c.Name + " \\ " + c.Status + " \\ " + courseDates);
                         }
                     }
                 }
@@ -147,6 +152,41 @@ namespace C971
             }
             catch
             {
+            }
+        }
+
+        private async void EditCourse_Clicked(object sender, EventArgs e)
+        {
+            if(CourseListView.SelectedItem != null)
+            {
+                Term term = await App.Database.GetTermAsync(selectedTerm);
+                var selectedCourse = CourseListView.SelectedItem;
+                int position = selectedCourse.ToString().IndexOf("\\");
+                var courseName = selectedCourse.ToString().Substring(0, position);
+                courseName = courseName.Trim();
+                Course course = await App.Database.GetCourseAsync(courseName);
+                await Navigation.PushAsync(new EditCourse(course, term));
+            }
+            else
+            {
+                await DisplayAlert("No Course Selected", "Select course to edit", "OK");
+            }
+        }
+
+        private async void CourseInfo_Clicked(object sender, EventArgs e)
+        {
+            if (CourseListView.SelectedItem != null)
+            {
+                var selectedCourse = CourseListView.SelectedItem;
+                int position = selectedCourse.ToString().IndexOf("\\");
+                var courseName = selectedCourse.ToString().Substring(0, position);
+                courseName = courseName.Trim();
+                Course course = await App.Database.GetCourseAsync(courseName);
+                await Navigation.PushAsync(new CourseInfo(course));
+            }
+            else
+            {
+                await DisplayAlert("No Course Selected", "Select course to view course info", "OK");
             }
         }
     }

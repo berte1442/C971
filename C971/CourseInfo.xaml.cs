@@ -12,7 +12,7 @@ namespace C971
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseInfo : ContentPage
     {
-        public CourseInfo()
+        public CourseInfo(Course course)
         {
             InitializeComponent();
         }

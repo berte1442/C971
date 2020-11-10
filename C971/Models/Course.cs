@@ -13,6 +13,7 @@ namespace C971
             get;
             set;
         }
+        [Unique]
         public string Name
         {
             get;
@@ -29,6 +30,11 @@ namespace C971
             set;
         }
         public string Status
+        {
+            get;
+            set;
+        }
+        public string Notes
         {
             get;
             set;
