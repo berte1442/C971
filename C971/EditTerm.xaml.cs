@@ -15,8 +15,10 @@ namespace C971
         Term currentTerm = new Term();
         bool firstLoad = true;
         string selectedCourse;
-        List<int> courseList = new List<int>();
-        List<int> removeList = new List<int>();
+
+        int[] termCourses = new int[6];
+        //List<int> termCourses = new List<int>();
+
         List<string> termCourseDisplay = new List<string>();
 
 
@@ -71,61 +73,13 @@ namespace C971
             currentTerm.StartDate = StartDatePicker.Date;
             currentTerm.EndDate = EndDatePicker.Date;
 
-            for(int i = 0; i < removeList.Count; i++)
-            {
-                if (removeList.Contains(currentTerm.CourseID))
-                {
-                    currentTerm.CourseID = 0;
-                }
-                else if (removeList.Contains(currentTerm.Course2ID))
-                {
-                    currentTerm.Course2ID = 0;
-                }
-                else if (removeList.Contains(currentTerm.Course3ID))
-                {
-                    currentTerm.Course3ID = 0;
-                }
-                else if (removeList.Contains(currentTerm.Course4ID))
-                {
-                    currentTerm.Course4ID = 0;
-                }
-                else if (removeList.Contains(currentTerm.Course5ID))
-                {
-                    currentTerm.Course5ID = 0;
-                }
-                else if (removeList.Contains(currentTerm.Course6ID))
-                {
-                    currentTerm.Course6ID = 0;
-                }
-            }
+            currentTerm.CourseID = termCourses[0];
+            currentTerm.Course2ID = termCourses[1];
+            currentTerm.Course3ID = termCourses[2];
+            currentTerm.Course4ID = termCourses[3];
+            currentTerm.Course5ID = termCourses[4];
+            currentTerm.Course6ID = termCourses[5];
 
-            for(int i = 0; i < courseList.Count; i++)
-            {
-                if(currentTerm.CourseID == 0)
-                {
-                    currentTerm.CourseID = courseList[i];
-                }
-                else if(currentTerm.Course2ID == 0)
-                {
-                    currentTerm.Course2ID = courseList[i];
-                }
-                else if(currentTerm.Course3ID == 0)
-                {
-                    currentTerm.Course3ID = courseList[i];
-                }
-                else if(currentTerm.Course4ID == 0)
-                {
-                    currentTerm.Course4ID = courseList[i];
-                }
-                else if(currentTerm.Course5ID == 0)
-                {
-                    currentTerm.Course5ID = courseList[i];
-                }
-                else if(currentTerm.Course6ID == 0)
-                {
-                    currentTerm.Course6ID = courseList[i];
-                }
-            }
             await App.Database.SaveTermAsync(currentTerm);
 
             await DisplayAlert("Saved", "Term Successfully Edited", "Ok");
@@ -138,47 +92,88 @@ namespace C971
         }
 
         private async void RemoveCourse_Clicked(object sender, EventArgs e)
-        {
-            var removeCourse = TermCoursesPicker.SelectedItem;
-            Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
-            if(course.Status.ToUpper() == "ACTIVE" || course.Status.ToUpper() == "COMPLETE")
+        { 
+            if(TermCoursesPicker.SelectedIndex != -1)
             {
-                await DisplayAlert("Restricted", "Course has already started and cannot be removed", "OK");
+                var removeCourse = TermCoursesPicker.SelectedItem;
+                Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
+                if (course.Status.ToUpper() == "ACTIVE" || course.Status.ToUpper() == "COMPLETE")
+                {
+                    await DisplayAlert("Restricted", "Course has already started and cannot be removed", "OK");
+                }
+                else
+                {
+                    //termCourses.Remove(course.CourseID);
+                    for (int i = 0; i < termCourses.Length; i++)
+                    {
+                        if (termCourses[i] == course.CourseID)
+                        {
+                            termCourses[i] = 0;
+                        }
+                    }
+                    await DisplayAlert("Remove", "Course will be removed from term", "OK");
+                }
+
+                TermCoursesPicker.SelectedIndex = -1;
+                OnAppearing();
             }
             else
             {
-                removeList.Add(course.CourseID);
+                await DisplayAlert("No Course Selected", "Select course to remove", "OK");
             }
-
-            await DisplayAlert("Remove", "Course will be added to remove list", "OK");
-            TermCoursesPicker.SelectedIndex = -1;
         }
 
         private async void AddCourse_Clicked(object sender, EventArgs e)
         {
-            var addedCourse = AllCoursesPicker.SelectedItem;
-            Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
+            while(AllCoursesPicker.SelectedIndex != -1)
+            {
+                var addedCourse = AllCoursesPicker.SelectedItem;
+                Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
 
-            if(currentTerm.CourseID != course.CourseID && currentTerm.Course2ID != course.CourseID && currentTerm.Course3ID !=
-                course.CourseID && currentTerm.Course4ID != course.CourseID && currentTerm.Course5ID != course.CourseID &&
-                currentTerm.Course6ID != course.CourseID)
-            {
-                course.StartDate = DateTime.Now.AddDays(30);
-                courseList.Add(course.CourseID);
-                await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
+                if (!termCourses.Contains(course.CourseID))
+                {
+                    bool available = false;
+                    for (int i = 0; i < termCourses.Length; i++)
+                    {
+                        if (termCourses[i] == 0)
+                        {
+                            course.StartDate = DateTime.Now.AddDays(30);
+                            termCourses[i] = course.CourseID;
+                            await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
+                            //AllCoursesPicker.Items.Remove(addedCourse.ToString());
+                            //TermCoursesPicker.Items.Add(addedCourse.ToString());}
+                            available = true;
+                            break;
+                        }
+                    }
+                    if (available == false)
+                    {
+                        await DisplayAlert("Error", "Only six courses can be assigned to term", "OK");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Course already assigned to term", "OK");
+                }
                 AllCoursesPicker.SelectedIndex = -1;
-                //AllCoursesPicker.Items.Remove(addedCourse.ToString());
-                //TermCoursesPicker.Items.Add(addedCourse.ToString());
-            }
-            else
-            {
-                await DisplayAlert("Error", "Course already assigned to term", "OK");
             }
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            //while (courses.Count < 6)
+            //{
+            //    // currently working here - parsing through term course id's to form course list
+            //    // course list will be used in place of addcourselist and removecourselist
+            //    // editing to remove button event and add button event will be required next
+            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.CourseID));
+            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course2ID));
+            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course3ID));
+            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course4ID));
+            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course5ID));
+            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course6ID));
+            //}
 
             //  Sets text to term name
             TermTitleEntry.Text = currentTerm.Name;
@@ -191,14 +186,12 @@ namespace C971
             // Adds terms courses to picker below for editing / deleting
             while (firstLoad)
             {
-                List<int> termCourses = new List<int>();
-
-                termCourses.Add(currentTerm.CourseID);
-                termCourses.Add(currentTerm.Course2ID);
-                termCourses.Add(currentTerm.Course3ID);
-                termCourses.Add(currentTerm.Course4ID);
-                termCourses.Add(currentTerm.Course5ID);
-                termCourses.Add(currentTerm.Course6ID);
+                termCourses[0] = currentTerm.CourseID;
+                termCourses[1] = currentTerm.Course2ID;
+                termCourses[2] = currentTerm.Course3ID;
+                termCourses[3] = currentTerm.Course4ID;
+                termCourses[4] = currentTerm.Course5ID;
+                termCourses[5] = currentTerm.Course6ID;
 
                 var allCourses = await App.Database.GetCoursesAsync();
                 //List<string> termCourseDisplay = new List<string>();
