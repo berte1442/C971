@@ -182,7 +182,9 @@ namespace C971
                 var courseName = selectedCourse.ToString().Substring(0, position);
                 courseName = courseName.Trim();
                 Course course = await App.Database.GetCourseAsync(courseName);
-                await Navigation.PushAsync(new CourseInfo(course));
+                Term term = await App.Database.GetTermAsync(selectedTerm);
+
+                await Navigation.PushAsync(new CourseInfo(course, term));
             }
             else
             {

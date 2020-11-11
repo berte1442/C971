@@ -200,6 +200,12 @@ namespace C971
             var instructorName = InstructorPicker.SelectedItem.ToString();
             Instructor instructor = await App.Database.GetInstructorAsync(instructorName);
 
+            instructor.Name = InstructorName.Text;
+            instructor.Phone = InstructorPhone.Text;
+            instructor.Email = InstructorEmail.Text;
+
+            await App.Database.SaveInstructorAsync(instructor);
+
             currentCourse.InstructorID = instructor.InstructorID;
             currentCourse.Notes = Notes.Text;
 

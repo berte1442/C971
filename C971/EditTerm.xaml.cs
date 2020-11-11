@@ -162,19 +162,6 @@ namespace C971
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //while (courses.Count < 6)
-            //{
-            //    // currently working here - parsing through term course id's to form course list
-            //    // course list will be used in place of addcourselist and removecourselist
-            //    // editing to remove button event and add button event will be required next
-            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.CourseID));
-            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course2ID));
-            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course3ID));
-            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course4ID));
-            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course5ID));
-            //    courses.Add(await App.Database.GetCourseAsync(currentTerm.Course6ID));
-            //}
-
             //  Sets text to term name
             TermTitleEntry.Text = currentTerm.Name;
             /////////////////////////////////////

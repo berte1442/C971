@@ -13,27 +13,49 @@
                     HorizontalOptions="Center"
                     FontSize="Medium"
                     Padding="0,20,0,0" />
-                <Label Text="Selected Course Name"
+                <Label x:Name="CourseNameLabel"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
+                <StackLayout BackgroundColor="Green"
+                             Padding="20,0,0,0">
+                    <Label Text="Course Dates"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="CourseDatesLabel"/>
+                    <Label Text="Course Status"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="CourseStatusLabel"/>
+                    <Label Text="Course Instructor Info"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="CourseInstructorName"/>
+                    <Label x:Name="CourseInstructorPhone"/>
+                    <Label x:Name="CourseInstructorEmail"/>
+                    <Label Text="Notes"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="NotesLabel"/>
+                    <Label Text="Assessments"
+                           FontAttributes="Bold"/>
+                    <Label x:Name="Assessment1Name"/>
+                    <Label x:Name="Assessment1Type"/>
+                    <Label x:Name="Assessment1Description"/>
+                    <Label x:Name="Assessment1Dates"/>
+                    <Label x:Name="Assessment2Name"/>
+                    <Label x:Name="Assessment2Type"/>
+                    <Label x:Name="Assessment2Description"/>
+                    <Label x:Name="Assessment2Dates"/>
+                </StackLayout>
 
-                <ContentView BackgroundColor="Green">
-                    <Label Text="Dates"/>
-                </ContentView>
-                
-                
                 <Button BackgroundColor="Blue"
                         Text="Edit Course"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="Button_Clicked_1"/>
-                <Button Text="Log out"
+                        Clicked="EditCourse_Clicked"/>
+                <Button Text="Home"
                         WidthRequest="100"
                         VerticalOptions="EndAndExpand"
                         HorizontalOptions="Start"
-                        Clicked="Button_Clicked"/>
+                        Clicked="Home_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
