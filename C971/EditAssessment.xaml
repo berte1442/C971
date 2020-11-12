@@ -14,15 +14,16 @@
                     FontSize="Medium"
                     Padding="0,20,0,0" />
 
-                <Label Text="Selected Assessment Name"
+                <Label x:Name="AssessmentNameLabel"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 
-                <Label Text="Edit Course Name"
+                <Label Text="Edit Assessment Name"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 
-                <Entry VerticalOptions="Start"
+                <Entry x:Name="AssessmentNameEntry"
+                    VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
 
@@ -31,13 +32,36 @@
                        Padding="0,20,0,0"/>
 
                 <Grid Padding="100,0,0,0">
-                    <CheckBox/>
+                    <CheckBox x:Name="OACheckbox"
+                              CheckedChanged="OACheckbox_CheckedChanged"/>
                     <Label Text="OA"
                            Margin="30,5,0,0"/>
-                    <CheckBox Grid.Column="1"/>
+                    <CheckBox x:Name="PACheckbox"
+                              CheckedChanged="PACheckbox_CheckedChanged"
+                        Grid.Column="1"/>
                     <Label Text="PA"
                         Grid.Column="1"
                         Margin="30,5,0,0"/>
+                </Grid>
+                <Label Text="Assessment Description"
+                       HorizontalOptions="Center"/>
+                <Editor x:Name="DescriptionEditor"
+                        Placeholder="Enter Assessment Description Here"/>
+                <Grid>
+                    <Label Text="Start Date"
+                           HorizontalOptions="Center"/>
+                    <Label Text="End Date"
+                           HorizontalOptions="Center"
+                           Grid.Column="1"/>
+                    <DatePicker Grid.Row="1"
+                                HorizontalOptions="Center"
+                                x:Name="StartDatePicker"
+                                PropertyChanged="StartDatePicker_PropertyChanged"/>
+                    <DatePicker Grid.Column="1"
+                                Grid.Row="1"
+                                HorizontalOptions="Center"
+                                x:Name="EndDatePicker"
+                                PropertyChanged="EndDatePicker_PropertyChanged"/>
                 </Grid>
                 <Label Text="Notifications"
                        HorizontalOptions="Center"
@@ -60,19 +84,19 @@
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Margin="0,20,0,0"
-                        Clicked="Button_Clicked"/>
+                        Clicked="Save_Clicked"/>
                 <Button Text="Cancel"
                         BackgroundColor="Red"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Margin="0,20,0,20"
-                        Clicked="Button_Clicked_1"/>
-                <Button Text="Log out"
+                        Clicked="Cancel_Clicked"/>
+                <Button Text="Home"
                         WidthRequest="100"
                         VerticalOptions="EndAndExpand"
                         HorizontalOptions="Start"
-                        Clicked="Button_Clicked_2"/>
+                        Clicked="Home_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

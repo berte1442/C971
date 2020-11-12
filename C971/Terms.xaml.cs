@@ -27,8 +27,6 @@ namespace C971
 
         public Terms()
         {
-            var dbCall = App.Database;  // alerts database to run check - if empty, populates with data
-
             InitializeComponent();
         }
 
