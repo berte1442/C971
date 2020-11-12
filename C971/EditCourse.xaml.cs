@@ -150,11 +150,15 @@ namespace C971
                 {
                     currentCourse.AssessmentID = assessment.AssessmentID;
                     Assessment1.Text = assessment.Name;
+                    PAAssessmentPicker.SelectedIndex = -1;
+                    PACheckbox.IsChecked = false;
                 }
                 else if(assessment.AssessmentType.ToUpper() == "OA")
                 {
                     currentCourse.Assessment2ID = assessment.AssessmentID;
                     Assessment2.Text = assessment.Name;
+                    OAAssessmentPicker.SelectedIndex = -1;
+                    OACheckbox.IsChecked = false;
                 }
 
                 await DisplayAlert("Assessment Added", "Assessment will be added to course", "OK");

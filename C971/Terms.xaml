@@ -11,9 +11,9 @@
                 <Label Text="Terms"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    FontSize="Medium"
+                    FontSize="Large"
                     Padding="0,20,0,0" />
-                <Grid Padding="0,40,0,0">
+                <Grid>
                     <Button Text="Edit Term"
                         TextColor="White"
                         VerticalOptions="Start"
@@ -41,8 +41,10 @@
                 <Label Text="Select Term"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    Padding="0,40,0,0"/>
-                <StackLayout Padding="20,0,20,0" BackgroundColor="Green"
+                       FontSize="Large"
+                    Padding="0,20,0,0"/>
+                <StackLayout Padding="20,0,20,0" 
+                             BackgroundColor="Green"
                              HeightRequest="300">
                     <Picker x:Name="TermPicker" TitleColor="DarkGreen" SelectedIndexChanged="TermPicker_SelectedIndexChanged">
                     </Picker>
@@ -50,7 +52,9 @@
                     <ListView x:Name="CourseListView"/>
 
                 </StackLayout>
+                
                 <Label Text="Select Course"
+                       FontSize="Large"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
                     Padding="0,0,0,20"/>

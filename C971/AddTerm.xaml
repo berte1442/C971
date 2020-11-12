@@ -9,11 +9,12 @@
         <ScrollView>
             <StackLayout>
                 <Label Text="Add Term"
+                       FontSize="Large"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    FontSize="Medium"
                     Padding="0,20,0,0" />
                 <Label Text="Name New Term"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
 
@@ -21,7 +22,10 @@
                     VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Label Text="Set Term Dates"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 <Grid Padding="30,0,0,0">
@@ -51,23 +55,31 @@
                                 PropertyChanged="EndDatePicker_PropertyChanged"/>
 
                 </Grid>
-                <Label Text="Add Courses"
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Add Course"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-                <Picker x:Name="AddCoursesPicker"/>
+                <Picker x:Name="AddCoursesPicker"
+                        Margin="20,0,20,0"/>
                 <Button BackgroundColor="Blue"
                         Text="Add Course"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
+                        Margin="0,0,0,20"
                         Clicked="AddCourse_Clicked"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Button BackgroundColor="Yellow"
                         Text="Save"
                         TextColor="Black"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
+                        Margin="0,20,0,0"
                         Clicked="Save_Clicked"/>
                 <Button BackgroundColor="Red"
                         Text="Cancel"
@@ -75,6 +87,7 @@
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
+                        Margin="0,0,0,20"
                         Clicked="Cancel_Clicked"/>
 
             </StackLayout>

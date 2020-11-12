@@ -25,6 +25,7 @@
                     VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Edit Course Dates"
                        FontSize="Large"
@@ -57,6 +58,26 @@
                                 Grid.Column="1"/>
 
                 </Grid>
+                <Label Text="Set Notifications"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Grid>
+                    <Label Text="Start"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="End"
+                           Grid.Column="1"
+                           HorizontalTextAlignment="Center"/>
+                    <Switch Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"/>
+                    <Switch Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"/>
+                </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Label Text="Course Status"
                        FontSize="Large"
                        HorizontalOptions="Center"
@@ -85,6 +106,7 @@
                     
                     </Picker.Items>
                 </Picker>-->
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Course Instructor"
                        FontSize="Large"
@@ -108,6 +130,7 @@
                        Placeholder="Email Address"
                        Margin="20,0,20,0"
                        TextColor="Green"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Notes (Optional)"
                        FontSize="Large"
@@ -129,26 +152,11 @@
                            Grid.Column="2"
                            HorizontalTextAlignment="Start"/>
                 </Grid>
-                <Label Text="Notifications"
-                       HorizontalOptions="Center"
-                       Padding="0,20,0,0"/>
-                <Grid>
-                    <Label Text="Start"
-                           HorizontalTextAlignment="Center"/>
-                    <Label Text="End"
-                           Grid.Column="1"
-                           HorizontalTextAlignment="Center"/>
-                    <Switch Grid.Row="1"
-                            HorizontalOptions="Center"
-                            OnColor="Green"/>
-                    <Switch Grid.Column="1"
-                            Grid.Row="1"
-                            HorizontalOptions="Center"
-                            OnColor="Green"/>
-                </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Assessments"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
                 <Grid>
                     <Grid>
                         <Label Text="PA"
@@ -173,6 +181,7 @@
                             Grid.Column="2"/>
                     </Grid>
                 </Grid>
+                
                 <Grid>
                      <Button Text="Delete"
                             TextColor="White"
@@ -186,6 +195,9 @@
                              Grid.Column="1"/>
                 </Grid>
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+                <Label Text="Add Assessment"
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
                 <Grid Margin="0,20,0,0">
                     <Label Text="Select PA"
                            HorizontalOptions="Center"/>
@@ -214,6 +226,7 @@
                         WidthRequest="200"
                         HorizontalOptions="Center"
                         Clicked="AddAssessment_Clicked"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Button Text="Save"
                         BackgroundColor="Yellow"

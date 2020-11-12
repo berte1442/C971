@@ -11,20 +11,24 @@
                 <Label Text="Edit Term"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    FontSize="Medium"
+                    FontSize="Large"
                     Padding="0,20,0,0" />
 
                 <Label Text="Change Term Title"
                        HorizontalOptions="Center"
+                       FontSize="Large"
                        Padding="0,20,0,0"/>
 
                 <Entry x:Name="TermTitleEntry" 
                     VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
+                
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Edit Term Dates"
                        HorizontalOptions="Center"
+                       FontSize="Large"
                        Padding="0,20,0,0"/>
                 <Grid Padding="30,0,0,0">
 
@@ -53,10 +57,15 @@
                             PropertyChanged="EndDatePicker_PropertyChanged"/>
 
                 </Grid>
+                
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Label Text="Edit/Remove Course"
                        HorizontalOptions="Center"
+                       FontSize="Large"
                        Padding="0,20,0,0"/>
-                <Picker x:Name="TermCoursesPicker"/>
+                <Picker x:Name="TermCoursesPicker"
+                        Margin="20,0,20,0"/>
                 <Button BackgroundColor="Blue"
                         Text="Edit Course"
                         TextColor="White"
@@ -71,10 +80,15 @@
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Clicked="RemoveCourse_Clicked"/>
+                
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Label Text="Add Course"
                        HorizontalOptions="Center"
+                       FontSize="Large"
                        Padding="0,20,0,0"/>
-                <Picker x:Name="AllCoursesPicker"/>
+                <Picker x:Name="AllCoursesPicker"
+                        Margin="20,0,20,0"/>
 
                 <Button BackgroundColor="Green"
                         Text="Add Course"
@@ -82,14 +96,17 @@
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="AddCourse_Clicked"
-                        Margin="0,0,0,30"/>
+                        Clicked="AddCourse_Clicked"/>
+                
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Button BackgroundColor="Yellow"
                         Text="Save"
                         TextColor="Black"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
+                        Margin="0,30,0,0"
                         Clicked="Save_Clicked"/>
                 <Button BackgroundColor="Red"
                         Text="Cancel"
@@ -97,6 +114,7 @@
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
+                        Margin="0,0,0,30"
                         Clicked="Cancel_Clicked"/>
 
             </StackLayout>

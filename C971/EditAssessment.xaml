@@ -11,14 +11,16 @@
                 <Label Text="Edit Assessment"
                     VerticalOptions="Start"
                     HorizontalOptions="Center"
-                    FontSize="Medium"
+                    FontSize="Large"
                     Padding="0,20,0,0" />
 
                 <Label x:Name="AssessmentNameLabel"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 
                 <Label Text="Edit Assessment Name"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 
@@ -26,8 +28,11 @@
                     VerticalOptions="Start"
                     Margin="20,0,20,0"
                     Placeholder="Title"/>
+                
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Assessment Type"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
 
@@ -43,10 +48,20 @@
                         Grid.Column="1"
                         Margin="30,5,0,0"/>
                 </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
                 <Label Text="Assessment Description"
+                       FontSize="Large"
                        HorizontalOptions="Center"/>
                 <Editor x:Name="DescriptionEditor"
-                        Placeholder="Enter Assessment Description Here"/>
+                        Placeholder="Enter Assessment Description Here"
+                        Margin="20,0,20,0"/>
+                
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Assessment Dates"
+                       FontSize="Large"
+                       HorizontalOptions="Center"/>
                 <Grid>
                     <Label Text="Start Date"
                            HorizontalOptions="Center"/>
@@ -63,7 +78,28 @@
                                 x:Name="EndDatePicker"
                                 PropertyChanged="EndDatePicker_PropertyChanged"/>
                 </Grid>
-                <Label Text="Notifications"
+                <Label Text="Set Notifications"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Grid>
+                    <Label Text="Start"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="End"
+                           Grid.Column="1"
+                           HorizontalTextAlignment="Center"/>
+                    <Switch Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"/>
+                    <Switch Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"/>
+                </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <!--<Label Text="Notifications"
+                       FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 <Grid Padding="50,0,0,0">
@@ -77,6 +113,7 @@
                 </Grid>
                 <Switch HorizontalOptions="Center"
                         OnColor="Green"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>-->
 
                 <Button Text="Save"
                         BackgroundColor="Yellow"
