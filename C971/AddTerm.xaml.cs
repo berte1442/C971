@@ -51,46 +51,52 @@ namespace C971
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            // Save 
-            // then close
-            Term term = new Term();
-            term.Name = TitleEntry.Text;
-            term.StartDate = StartDatePicker.Date;
-            term.EndDate = EndDatePicker.Date;
-
-            for(int i = 0; i < addedCourses.Count; i++)
+            if(TitleEntry.Text != null)
             {
-                if(term.CourseID == 0)
-                {
-                    term.CourseID = addedCourses[i];
-                }
-                else if(term.Course2ID == 0)
-                {
-                    term.Course2ID = addedCourses[i];
-                }
-                else if(term.Course3ID == 0)
-                {
-                    term.Course3ID = addedCourses[i];
-                }               
-                else if(term.Course4ID == 0)
-                {
-                    term.Course4ID = addedCourses[i];
-                }              
-                else if(term.Course5ID == 0)
-                {
-                    term.Course5ID = addedCourses[i];
-                }              
-                else if(term.Course6ID == 0)
-                {
-                    term.Course6ID = addedCourses[i];
-                }
-            }
+                Term term = new Term();
+                term.Name = TitleEntry.Text;
+                term.StartDate = StartDatePicker.Date;
+                term.EndDate = EndDatePicker.Date;
 
-            await App.Database.SaveTermAsync(term);
-            
-            await DisplayAlert("Saved", "Term Successfully Created", "Ok");
-            await Application.Current.MainPage.Navigation.PopAsync();
+                for (int i = 0; i < addedCourses.Count; i++)
+                {
+                    if (term.CourseID == 0)
+                    {
+                        term.CourseID = addedCourses[i];
+                    }
+                    else if (term.Course2ID == 0)
+                    {
+                        term.Course2ID = addedCourses[i];
+                    }
+                    else if (term.Course3ID == 0)
+                    {
+                        term.Course3ID = addedCourses[i];
+                    }
+                    else if (term.Course4ID == 0)
+                    {
+                        term.Course4ID = addedCourses[i];
+                    }
+                    else if (term.Course5ID == 0)
+                    {
+                        term.Course5ID = addedCourses[i];
+                    }
+                    else if (term.Course6ID == 0)
+                    {
+                        term.Course6ID = addedCourses[i];
+                    }
+                }
+
+                await App.Database.SaveTermAsync(term);
+
+                await DisplayAlert("Saved", "Term Successfully Created", "Ok");
+                await Application.Current.MainPage.Navigation.PopAsync();
+            }
+            else
+            {
+                DisplayAlert("Name Required", "You must give the term a name in order to save.", "OK");
+            }
         }
+            
 
         private void Cancel_Clicked(object sender, EventArgs e)
         {

@@ -68,8 +68,10 @@ namespace C971
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            
-            currentTerm.Name = TermTitleEntry.Text;
+            if(TermTitleEntry.Text != "")
+            {
+                currentTerm.Name = TermTitleEntry.Text;
+            }
             currentTerm.StartDate = StartDatePicker.Date;
             currentTerm.EndDate = EndDatePicker.Date;
 
