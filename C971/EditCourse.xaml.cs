@@ -216,6 +216,15 @@ namespace C971
                 currentCourse.InstructorID = instructor.InstructorID;
             }
 
+            if (NotesSwitch.IsToggled)
+            {
+                currentCourse.NotesPublic = true;
+            }
+            else
+            {
+                currentCourse.NotesPublic = false;
+            }
+
             if(Notes.Text != null)
             {
                 currentCourse.Notes = Notes.Text;
@@ -338,6 +347,14 @@ namespace C971
                         }
                     }
                 }
+                if(currentCourse.NotesPublic == false)
+                {
+                    NotesSwitch.IsToggled = false;
+                }
+                else
+                {
+                    NotesSwitch.IsToggled = true;
+                }
                 //PAAssessmentPicker.ItemsSource = paAssessmentNames;
                 //OAAssessmentPicker.ItemsSource = oaAssessmentNames;
             }
@@ -399,6 +416,18 @@ namespace C971
                     InstructorEmail.Text = instructor.Email;
                 }
             }
+        }
+
+        private void NotesSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //if (NotesSwitch.IsToggled)
+            //{
+            //    currentCourse.NotesPublic = true;
+            //}
+            //else
+            //{
+            //    currentCourse.NotesPublic = false;
+            //}
         }
     }
 }

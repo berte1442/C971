@@ -145,7 +145,9 @@
                     <Label Text="Private"
                            Grid.Column="0"
                            HorizontalTextAlignment="End"/>
-                    <Switch HorizontalOptions="Center"
+                    <Switch x:Name="NotesSwitch"
+                            PropertyChanged="NotesSwitch_PropertyChanged"
+                        HorizontalOptions="Center"
                             Grid.Column="1"
                             OnColor="LightGray"/>
                     <Label Text="Public"
@@ -160,23 +162,27 @@
                 <Grid>
                     <Grid>
                         <Label Text="PA"
+                               VerticalTextAlignment="Center"
                                HorizontalOptions="End"/>
                         <CheckBox x:Name="PAAssessmentCheckBox"
                                   HorizontalOptions="Center"
                                   Grid.Column="1"
                                   CheckedChanged="PAAssessmentCheckBox_CheckedChanged"/>
                         <Label x:Name="Assessment1"
+                               VerticalTextAlignment="Center"
                                HorizontalOptions="Start"
                             Grid.Column="2"/>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Label Text="OA"
+                               VerticalTextAlignment="Center"
                                HorizontalOptions="End"/>
                         <CheckBox x:Name="OAAssessmentCheckBox"
                             HorizontalOptions="Center"
                                   Grid.Column="1"
                                   CheckedChanged="OAAssessmentCheckBox_CheckedChanged"/>
                         <Label x:Name="Assessment2"
+                               VerticalTextAlignment="Center"
                                HorizontalOptions="Start"
                             Grid.Column="2"/>
                     </Grid>
@@ -198,17 +204,20 @@
                 <Label Text="Add Assessment"
                        HorizontalOptions="Center"
                        FontSize="Large"/>
-                <Grid Margin="0,20,0,0">
+                <Grid>
                     <Label Text="Select PA"
                            HorizontalOptions="Center"/>
                     <Label Text="Select OA"
                            HorizontalOptions="Center"
                            Grid.Column="1"/>
                     <Picker x:Name="PAAssessmentPicker"
-                            Grid.Row="1"/>
+                            Grid.Row="1"
+                            Margin="20,0,0,0"/>
                     <Picker x:Name="OAAssessmentPicker"
                             Grid.Row="1"
-                            Grid.Column="1"/>
+                            Grid.Column="1"
+                            Margin="0,0,20,0"/>
+                    
                     <CheckBox x:Name="PACheckbox"
                               HorizontalOptions="Center"
                               Grid.Row="2"

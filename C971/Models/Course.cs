@@ -7,6 +7,10 @@ namespace C971
 {
     public class Course
     {
+        public Course()
+        {
+            NotesPublic = false;
+        }
         [PrimaryKey, AutoIncrement]
         public int CourseID
         {
@@ -35,6 +39,11 @@ namespace C971
             set;
         }
         public string Notes
+        {
+            get;
+            set;
+        }
+        public bool NotesPublic
         {
             get;
             set;

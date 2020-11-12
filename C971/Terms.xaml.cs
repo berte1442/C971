@@ -22,8 +22,6 @@ namespace C971
     {
         public string selectedTerm;
         public bool firstLoad = true;
-        //List<string> courseDisplay = new List<string>();
-
 
         public Terms()
         {
@@ -75,7 +73,6 @@ namespace C971
                     selectedTerm = null;
                     await DisplayAlert("Deleted", "Term successfully deleted", "OK");
                 }
- 
             }
         }
 
@@ -155,7 +152,7 @@ namespace C971
 
         private async void EditCourse_Clicked(object sender, EventArgs e)
         {
-            if(CourseListView.SelectedItem != null)
+            if(CourseListView.SelectedItem != null && TermPicker.SelectedIndex != -1)
             {
                 Term term = await App.Database.GetTermAsync(selectedTerm);
                 var selectedCourse = CourseListView.SelectedItem;
@@ -173,7 +170,7 @@ namespace C971
 
         private async void CourseInfo_Clicked(object sender, EventArgs e)
         {
-            if (CourseListView.SelectedItem != null)
+            if (CourseListView.SelectedItem != null && TermPicker.SelectedIndex != -1)
             {
                 var selectedCourse = CourseListView.SelectedItem;
                 int position = selectedCourse.ToString().IndexOf("\\");
