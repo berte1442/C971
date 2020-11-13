@@ -68,13 +68,17 @@
                     <Label Text="End"
                            Grid.Column="1"
                            HorizontalTextAlignment="Center"/>
-                    <Switch Grid.Row="1"
+                    <Switch x:Name="StartSwitch"
+                        Grid.Row="1"
                             HorizontalOptions="Center"
-                            OnColor="Green"/>
-                    <Switch Grid.Column="1"
+                            OnColor="Green"
+                            PropertyChanged="StartSwitch_PropertyChanged"/>
+                    <Switch x:Name="EndSwitch"
+                        Grid.Column="1"
                             Grid.Row="1"
                             HorizontalOptions="Center"
-                            OnColor="Green"/>
+                            OnColor="Green"
+                            PropertyChanged="EndSwitch_PropertyChanged"/>
                 </Grid>
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 

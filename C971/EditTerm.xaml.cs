@@ -242,8 +242,10 @@ namespace C971
                     await DisplayAlert("Remove", "Course will be removed from term", "OK");
                 }
 
+                TermCoursesPicker.Items.Remove(course.Name);
+                AllCoursesPicker.Items.Add(course.Name);
                 TermCoursesPicker.SelectedIndex = -1;
-                OnAppearing();
+                //OnAppearing();
             }
             else
             {

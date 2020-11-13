@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Android.OS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Android;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -502,7 +504,7 @@ namespace C971
                 barePhone = phone;
                 return true;
             }
-        }
+        }   
         public bool Domain_Check(string domain)
         {
             if(domain != "com" && domain != "edu" && domain != "gov" && domain != "net" && domain != "org")
@@ -513,6 +515,30 @@ namespace C971
             {
                 return true;
             }
+        }
+
+        private void StartSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (currentCourse.NotesPublic == false)
+            {
+                currentCourse.NotesPublic = true;
+            }
+            else
+            {
+                currentCourse.NotesPublic = false;
+            }
+            if (currentCourse.NotesPublic == true)
+            {
+                LocalNotifications localNotifications = new LocalNotifications();
+                localNotifications.Title = "Course Start";
+                localNotifications.Body = currentCourse.Name + " starts today";
+                localNotifications.NotifyTime = currentCourse.StartDate;
+            }
+        }
+
+        private void EndSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
         }
     }
 }

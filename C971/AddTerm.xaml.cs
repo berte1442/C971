@@ -88,15 +88,34 @@ namespace C971
             EndDatePicker.Date = StartDatePicker.Date.AddMonths(6);
 
             var courses = await App.Database.GetCoursesAsync();
-            //TermPicker.Items.Clear();
-            while (firstLoad)
-            {
+            var terms = await App.Database.GetTermsAsync();
+            List<int> termIds = new List<int>();
+            AddCoursesPicker.Items.Clear();
+            //while (firstLoad)
+            //{
+                foreach (var t in terms)
+                {
+                    termIds.Add(t.CourseID);
+                    termIds.Add(t.Course2ID);
+                    termIds.Add(t.Course3ID);
+                    termIds.Add(t.Course4ID);
+                    termIds.Add(t.Course5ID);
+                    termIds.Add(t.Course6ID);
+                }
+            //TermPicker.Items.Clear();            
                 for (int i = 0; i < courses.Count; i++)
                 {
-                    AddCoursesPicker.Items.Add(courses[i].Name);
+                    if(!termIds.Contains(courses[i].CourseID))
+                    {
+                        AddCoursesPicker.Items.Add(courses[i].Name);
+                    }
+                }
+                if(AddCoursesPicker.Items.Count == 0)
+                {
+                    await DisplayAlert("No Courses", "All courses have been assigned", "OK");
                 }
                 firstLoad = false;
-            }
+            //}      
         }
 
         private void StartDatePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
