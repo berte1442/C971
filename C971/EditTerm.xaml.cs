@@ -93,73 +93,73 @@ namespace C971
             Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        private async void RemoveCourse_Clicked(object sender, EventArgs e)
-        { 
-            if(TermCoursesPicker.SelectedIndex != -1)
-            {
-                var removeCourse = TermCoursesPicker.SelectedItem;
-                Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
-                if (course.Status.ToUpper() == "ACTIVE" || course.Status.ToUpper() == "COMPLETE")
-                {
-                    await DisplayAlert("Restricted", "Course has already started and cannot be removed", "OK");
-                }
-                else
-                {
-                    //termCourses.Remove(course.CourseID);
-                    for (int i = 0; i < termCourses.Length; i++)
-                    {
-                        if (termCourses[i] == course.CourseID)
-                        {
-                            termCourses[i] = 0;
-                        }
-                    }
-                    await DisplayAlert("Remove", "Course will be removed from term", "OK");
-                }
+        //private async void RemoveCourse_Clicked(object sender, EventArgs e)
+        //{ 
+        //    if(TermCoursesPicker.SelectedIndex != -1)
+        //    {
+        //        var removeCourse = TermCoursesPicker.SelectedItem;
+        //        Course course = await App.Database.GetCourseAsync(removeCourse.ToString());
+        //        if (course.Status.ToUpper() == "ACTIVE" || course.Status.ToUpper() == "COMPLETE")
+        //        {
+        //            await DisplayAlert("Restricted", "Course has already started and cannot be removed", "OK");
+        //        }
+        //        else
+        //        {
+        //            //termCourses.Remove(course.CourseID);
+        //            for (int i = 0; i < termCourses.Length; i++)
+        //            {
+        //                if (termCourses[i] == course.CourseID)
+        //                {
+        //                    termCourses[i] = 0;
+        //                }
+        //            }
+        //            await DisplayAlert("Remove", "Course will be removed from term", "OK");
+        //        }
 
-                TermCoursesPicker.SelectedIndex = -1;
-                OnAppearing();
-            }
-            else
-            {
-                await DisplayAlert("No Course Selected", "Select course to remove", "OK");
-            }
-        }
+        //        TermCoursesPicker.SelectedIndex = -1;
+        //        OnAppearing();
+        //    }
+        //    else
+        //    {
+        //        await DisplayAlert("No Course Selected", "Select course to remove", "OK");
+        //    }
+        //}
 
-        private async void AddCourse_Clicked(object sender, EventArgs e)
-        {
-            while(AllCoursesPicker.SelectedIndex != -1)
-            {
-                var addedCourse = AllCoursesPicker.SelectedItem;
-                Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
+        //private async void AddCourse_Clicked(object sender, EventArgs e)
+        //{
+        //    while(AllCoursesPicker.SelectedIndex != -1)
+        //    {
+        //        var addedCourse = AllCoursesPicker.SelectedItem;
+        //        Course course = await App.Database.GetCourseAsync(addedCourse.ToString());
 
-                if (!termCourses.Contains(course.CourseID))
-                {
-                    bool available = false;
-                    for (int i = 0; i < termCourses.Length; i++)
-                    {
-                        if (termCourses[i] == 0)
-                        {
-                            course.StartDate = DateTime.Now.AddDays(30);
-                            termCourses[i] = course.CourseID;
-                            await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
-                            //AllCoursesPicker.Items.Remove(addedCourse.ToString());
-                            //TermCoursesPicker.Items.Add(addedCourse.ToString());}
-                            available = true;
-                            break;
-                        }
-                    }
-                    if (available == false)
-                    {
-                        await DisplayAlert("Error", "Only six courses can be assigned to term", "OK");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "Course already assigned to term", "OK");
-                }
-                AllCoursesPicker.SelectedIndex = -1;
-            }
-        }
+        //        if (!termCourses.Contains(course.CourseID))
+        //        {
+        //            bool available = false;
+        //            for (int i = 0; i < termCourses.Length; i++)
+        //            {
+        //                if (termCourses[i] == 0)
+        //                {
+        //                    course.StartDate = DateTime.Now.AddDays(30);
+        //                    termCourses[i] = course.CourseID;
+        //                    await DisplayAlert("Course Added", "'" + addedCourse.ToString() + "'" + " has been added to " + currentTerm.Name + ".", "OK");
+        //                    //AllCoursesPicker.Items.Remove(addedCourse.ToString());
+        //                    //TermCoursesPicker.Items.Add(addedCourse.ToString());}
+        //                    available = true;
+        //                    break;
+        //                }
+        //            }
+        //            if (available == false)
+        //            {
+        //                await DisplayAlert("Error", "Only six courses can be assigned to term", "OK");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            await DisplayAlert("Error", "Course already assigned to term", "OK");
+        //        }
+        //        AllCoursesPicker.SelectedIndex = -1;
+        //    }
+        //}
 
         protected async override void OnAppearing()
         {
@@ -212,7 +212,7 @@ namespace C971
                     }
                 }
 
-                AllCoursesPicker.ItemsSource = allCourseDisplay;
+                //AllCoursesPicker.ItemsSource = allCourseDisplay;
 
                 firstLoad = false;
             }

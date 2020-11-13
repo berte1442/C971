@@ -82,7 +82,7 @@
                        FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
-                <Grid>
+                <!--<Grid>
                     <Label x:Name="StatusLabel"
                        HorizontalOptions="Center"
                            Padding="20,0,0,0"/>
@@ -94,8 +94,8 @@
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center"
                            Padding="0,0,20,0"/>
-                </Grid>
-                <!--<Picker x:Name="CourseStatusPicker"
+                </Grid>-->
+                <Picker x:Name="CourseStatusPicker"
                         Margin="20,0,20,0"
                         TextColor="Green">
                     <Picker.Items>
@@ -105,7 +105,7 @@
                         <x:String>Completed</x:String>
                     
                     </Picker.Items>
-                </Picker>-->
+                </Picker>
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Label Text="Course Instructor"
@@ -122,11 +122,11 @@
                        Placeholder="Name"
                        Margin="20,0,20,0"
                        TextColor="Green"/>
-                <Entry x:Name="InstructorPhone"
+                <Entry x:Name="InstructorPhone"                       
                        Placeholder="Phone Number"
                        Margin="20,0,20,0"
                        TextColor="Green"/>
-                <Entry x:Name="InstructorEmail"
+                <Entry x:Name="InstructorEmail"                     
                        Placeholder="Email Address"
                        Margin="20,0,20,0"
                        TextColor="Green"/>

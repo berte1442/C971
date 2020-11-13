@@ -60,7 +60,7 @@
                 
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
-                <Label Text="Edit/Remove Course"
+                <Label Text="Edit Course"
                        HorizontalOptions="Center"
                        FontSize="Large"
                        Padding="0,20,0,0"/>
@@ -73,17 +73,17 @@
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         Clicked="EditCourse_Clicked"/>
-                <Button BackgroundColor="Red"
+                <!--<Button BackgroundColor="Red"
                         Text="Remove Course"
                         TextColor="White"
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="RemoveCourse_Clicked"/>
+                        Clicked="RemoveCourse_Clicked"/>-->
                 
-                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+                <!--<BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>-->
 
-                <Label Text="Add Course"
+                <!--<Label Text="Add Course"
                        HorizontalOptions="Center"
                        FontSize="Large"
                        Padding="0,20,0,0"/>
@@ -96,7 +96,7 @@
                         WidthRequest="200"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
-                        Clicked="AddCourse_Clicked"/>
+                        Clicked="AddCourse_Clicked"/>-->
                 
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 

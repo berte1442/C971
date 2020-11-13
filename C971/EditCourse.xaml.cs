@@ -15,6 +15,7 @@ namespace C971
         private Course currentCourse = new Course();
         private Term currentTerm = new Term();
         Assessment assessment = new Assessment();
+        string barePhone;
 
         public EditCourse(Course course, Term term)
         {
@@ -180,68 +181,84 @@ namespace C971
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            currentCourse.Name = CourseTitleEntry.Text;
-            currentCourse.StartDate = StartDatePicker.Date;
-            currentCourse.EndDate = EndDatePicker.Date;
+            if(InstructorPicker.SelectedIndex != -1)
+            {
+                var emailValidate = Email_Validate(InstructorEmail.Text);
+                var phoneValidate = Phone_Validate(InstructorPhone.Text);
 
-            if (currentCourse.StartDate < DateTime.Now && CompleteCheckbox.IsChecked == false)
-            {
-                currentCourse.Status = "Active";
-            }
-            else if(currentCourse.StartDate > DateTime.Now && CompleteCheckbox.IsChecked == false)
-            {
-                currentCourse.Status = "Inactive";
-            }
-            else if(currentCourse.Status.ToUpper() == "ACTIVE" && CompleteCheckbox.IsChecked)
-            {
-                currentCourse.Status = "Completed";
-            }
-            else if(currentCourse.Status.ToUpper() == "INACTIVE" && CompleteCheckbox.IsChecked)
-            {
-                currentCourse.Status = "Inactive";
-                await DisplayAlert("Error", "Course cannot be marked 'Completed' while inactive.", "OK");
-            }
-            //currentCourse.Status = CourseStatusPicker.SelectedItem.ToString();
+                if (emailValidate == false)
+                {
+                    DisplayAlert("Invalid Email", "Invalid email address for course instructor.", "OK");
+                }
+                else if(phoneValidate == false)
+                {
+                    DisplayAlert("Invalid Phone", "Invalid phone number for course instructor.", "OK");
+                }
+                else
+                {
+                    if (CourseTitleEntry.Text != null)
+                    {
+                        currentCourse.Name = CourseTitleEntry.Text;
+                    }
+                    currentCourse.StartDate = StartDatePicker.Date;
+                    currentCourse.EndDate = EndDatePicker.Date;
+                    if (CourseStatusPicker.SelectedIndex != -1)
+                    {
+                        currentCourse.Status = CourseStatusPicker.SelectedItem.ToString();
+                    }
 
-            if(InstructorPicker.SelectedItem != null)
-            {
-                var instructorName = InstructorPicker.SelectedItem.ToString();
-                Instructor instructor = await App.Database.GetInstructorAsync(instructorName);
-                instructor.Name = InstructorName.Text;
-                instructor.Phone = InstructorPhone.Text;
-                instructor.Email = InstructorEmail.Text;
+                    if (InstructorPicker.SelectedItem != null)
+                    {
+                        var instructorName = InstructorPicker.SelectedItem.ToString();
+                        Instructor instructor = await App.Database.GetInstructorAsync(instructorName);
+                        instructor.Name = InstructorName.Text;
+                        string phone = barePhone;
+                        if(phone.Length == 10)
+                        {
+                            phone = phone.Insert(0, "(");
+                            phone = phone.Insert(4, ")");
+                            phone = phone.Insert(8, "-");
+                        }else if(phone.Length == 7)
+                        {
+                            phone.Insert(3, "-");
+                        }
+                        instructor.Phone = phone;
+                        instructor.Email = InstructorEmail.Text;
 
-                await App.Database.SaveInstructorAsync(instructor);
+                        await App.Database.SaveInstructorAsync(instructor);
 
-                currentCourse.InstructorID = instructor.InstructorID;
-            }
+                        currentCourse.InstructorID = instructor.InstructorID;
+                    }
 
-            if (NotesSwitch.IsToggled)
-            {
-                currentCourse.NotesPublic = true;
-            }
-            else
-            {
-                currentCourse.NotesPublic = false;
-            }
+                    if (NotesSwitch.IsToggled)
+                    {
+                        currentCourse.NotesPublic = true;
+                    }
+                    else
+                    {
+                        currentCourse.NotesPublic = false;
+                    }
 
-            if(Notes.Text != null)
-            {
-                currentCourse.Notes = Notes.Text;
-            }
+                    if (Notes.Text != null)
+                    {
+                        currentCourse.Notes = Notes.Text;
+                    }
 
-            if (Assessment1.Text != null && Assessment1.Text != "No assessment assigned")
-            {
-                var assessment1 = await App.Database.GetAssessmentAsync(Assessment1.Text);
-                currentCourse.AssessmentID = assessment1.AssessmentID;
+                    if (Assessment1.Text != null && Assessment1.Text != "No assessment assigned")
+                    {
+                        var assessment1 = await App.Database.GetAssessmentAsync(Assessment1.Text);
+                        currentCourse.AssessmentID = assessment1.AssessmentID;
+                    }
+                    if (Assessment2.Text != null && Assessment2.Text != "No assessment assigned")
+                    {
+                        var assessment2 = await App.Database.GetAssessmentAsync(Assessment2.Text);
+                        currentCourse.Assessment2ID = assessment2.AssessmentID;
+                    }
+                    await App.Database.SaveCourseAsync(currentCourse);
+                    await Application.Current.MainPage.Navigation.PopAsync();
+
+                }
             }
-            if(Assessment2.Text != null && Assessment2.Text != "No assessment assigned")
-            {
-                var assessment2 = await App.Database.GetAssessmentAsync(Assessment2.Text);
-                currentCourse.Assessment2ID = assessment2.AssessmentID;
-            }
-            await App.Database.SaveCourseAsync(currentCourse);
-            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         private void Cancel_Clicked(object sender, EventArgs e)
@@ -279,7 +296,8 @@ namespace C971
                 //CourseStatusPicker.SelectedItem = currentCourse.Status;
                 if(currentCourse.Status != null)
                 {
-                    StatusLabel.Text = "Course Status: " + currentCourse.Status;
+                    //StatusLabel.Text = "Course Status: " + currentCourse.Status;
+                    CourseStatusPicker.SelectedItem = currentCourse.Status;
                 }
                 // loads all course instructors into Picker
                 var instructors = await App.Database.GetInstructorsAsync();
@@ -428,6 +446,54 @@ namespace C971
             //{
             //    currentCourse.NotesPublic = false;
             //}
+        }
+        public bool Email_Validate(string email)
+        {
+            var emailLength = email.Length;
+            var atIndex = email.IndexOf("@");
+            var dotIndex = email.IndexOf(".");
+
+            var domain = email.Substring(dotIndex + 1);
+            var domainValidate = Domain_Check(domain);        
+
+            if(atIndex == -1 || dotIndex == -1 || dotIndex < atIndex || (dotIndex + 3) >= emailLength 
+                || atIndex < 3 || (atIndex + 5) >= emailLength || !((dotIndex - atIndex) > 3) || domainValidate == false)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool Phone_Validate(string phone)
+        {
+            phone = phone.Trim();
+            phone = phone.Replace("(", "");
+            phone = phone.Replace(")", "");
+            phone = phone.Replace("-", "");
+            
+            bool result = phone.Any(x => char.IsLetter(x));
+            if ((phone.Length != 10 && phone.Length != 7) || result)
+            {
+                return false;
+            }
+            else
+            {
+                barePhone = phone;
+                return true;
+            }
+        }
+        public bool Domain_Check(string domain)
+        {
+            if(domain != "com" && domain != "edu" && domain != "gov" && domain != "net" && domain != "org")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }
