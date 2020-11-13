@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.CourseInfo">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Course Info"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    FontSize="Large"
+                    Padding="0,20,0,0" />
+                <Label x:Name="CourseNameLabel"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <StackLayout BackgroundColor="Green"
+                             Padding="20,0,0,0">
+                    <Label Text="Course Dates"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label x:Name="CourseDatesLabel"
+                           FontSize="Medium"/>
+                    <Label Text="Course Status"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label x:Name="CourseStatusLabel"
+                           FontSize="Medium"/>
+                    <Label Text="Course Instructor Info"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label x:Name="CourseInstructorName"
+                           FontSize="Medium"/>
+                    <Label x:Name="CourseInstructorPhone"
+                           FontSize="Medium"/>
+                    <Label x:Name="CourseInstructorEmail"
+                           FontSize="Medium"/>
+                    <Grid>
+                    <Label Text="Notes"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                        <Button Grid.Column="1"
+                                BackgroundColor="Blue"
+                                TextColor="White"
+                                Text="Share Notes"
+                                Clicked="ShareNotes_Clicked"/>
+                        <Label x:Name="NotesLabel"
+                           FontSize="Medium"
+                           Grid.Row="1"/>
+                        <Label x:Name="PrivacyLabel"
+                               FontSize="Medium"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+                    </Grid>
+                    <Label Text="Assessments"
+                           FontAttributes="Bold"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment1Name"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment1Type"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment1Description"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment1Dates"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment2Name"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment2Type"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment2Description"
+                           FontSize="Medium"/>
+                    <Label x:Name="Assessment2Dates"
+                           FontSize="Medium"/>
+                </StackLayout>
+
+                <Button BackgroundColor="Blue"
+                        Text="Edit Course"
+                        TextColor="White"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Clicked="EditCourse_Clicked"/>
+                <Button Text="Home"
+                        WidthRequest="100"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Start"
+                        Clicked="Home_Clicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

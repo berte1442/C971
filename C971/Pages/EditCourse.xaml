@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.EditCourse">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Edit Course"
+                       FontSize="Large"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    Padding="0,20,0,0" />
+                
+                <Label Text="Change Course Title"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Entry x:Name="CourseTitleEntry"
+                       PlaceholderColor="Green"
+                       TextColor="Green"
+                    VerticalOptions="Start"
+                    Margin="20,0,20,0"
+                    Placeholder="Title"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Edit Course Dates"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Grid Padding="30,0,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Text="Start"
+                           Padding="30,5,0,0"/>
+
+                    <Label Text="End"
+                           Padding="30,5,30,0"
+                           Grid.Column="1"
+                           HorizontalOptions="Center"/>
+
+                    <DatePicker x:Name="StartDatePicker" 
+                                TextColor="Green"
+                        HorizontalOptions="Start"
+                                Grid.Row="1"/>
+                    <DatePicker x:Name="EndDatePicker" 
+                                TextColor="Green"
+                        HorizontalOptions="Center"
+                                Grid.Row="1"
+                                Grid.Column="1"/>
+
+                </Grid>
+                <Label Text="Set Notifications"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+
+                <Grid>
+                    <Label Text="Start"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="End"
+                           Grid.Column="1"
+                           HorizontalTextAlignment="Center"/>
+                    <Switch x:Name="StartSwitch"
+                        Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"
+                            PropertyChanged="StartSwitch_PropertyChanged"/>
+                    <Switch x:Name="EndSwitch"
+                        Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalOptions="Center"
+                            OnColor="Green"
+                            PropertyChanged="EndSwitch_PropertyChanged"/>
+                </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Course Status"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <!--<Grid>
+                    <Label x:Name="StatusLabel"
+                       HorizontalOptions="Center"
+                           Padding="20,0,0,0"/>
+                    <CheckBox x:Name="CompleteCheckbox"
+                              HorizontalOptions="End"
+                              Grid.Column="1"/>
+                    <Label Text="Course Completed"
+                           Grid.Column="2"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center"
+                           Padding="0,0,20,0"/>
+                </Grid>-->
+                <Picker x:Name="CourseStatusPicker"
+                        Margin="20,0,20,0"
+                        TextColor="Green">
+                    <Picker.Items>
+                    
+                        <x:String>Active</x:String>
+                        <x:String>Inactive</x:String>
+                        <x:String>Completed</x:String>
+                    
+                    </Picker.Items>
+                </Picker>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Course Instructor"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+                <Picker x:Name="InstructorPicker"
+                        Title="Select Course Instructor"
+                        Margin="20,0,20,0"
+                        TextColor="Green"
+                        SelectedIndexChanged="InstructorPicker_SelectedIndexChanged">
+                </Picker>
+                <Entry x:Name="InstructorName"
+                       Placeholder="Name"
+                       Margin="20,0,20,0"
+                       TextColor="Green"/>
+                <Entry x:Name="InstructorPhone"                       
+                       Placeholder="Phone Number"
+                       Margin="20,0,20,0"
+                       TextColor="Green"/>
+                <Entry x:Name="InstructorEmail"                     
+                       Placeholder="Email Address"
+                       Margin="20,0,20,0"
+                       TextColor="Green"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Notes (Optional)"
+                       FontSize="Large"
+                       HorizontalOptions="Center"
+                       Padding="0,20,0,0"/>
+            
+                <Editor x:Name="Notes"
+                    Placeholder="Write your notes for this course here"
+                        Margin="20,0,20,0"/>
+
+                <Grid>
+                    <Label Text="Private"
+                           Grid.Column="0"
+                           HorizontalTextAlignment="End"/>
+                    <Switch x:Name="NotesSwitch"
+                            PropertyChanged="NotesSwitch_PropertyChanged"
+                        HorizontalOptions="Center"
+                            Grid.Column="1"
+                            OnColor="LightGray"/>
+                    <Label Text="Public"
+                           Grid.Column="2"
+                           HorizontalTextAlignment="Start"/>
+                </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Label Text="Assessments"
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
+                <Grid>
+                    <Grid>
+                        <Label Text="PA"
+                               VerticalTextAlignment="Center"
+                               HorizontalOptions="End"/>
+                        <CheckBox x:Name="PAAssessmentCheckBox"
+                                  HorizontalOptions="Center"
+                                  Grid.Column="1"
+                                  CheckedChanged="PAAssessmentCheckBox_CheckedChanged"/>
+                        <Label x:Name="Assessment1"
+                               VerticalTextAlignment="Center"
+                               HorizontalOptions="Start"
+                            Grid.Column="2"/>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Label Text="OA"
+                               VerticalTextAlignment="Center"
+                               HorizontalOptions="End"/>
+                        <CheckBox x:Name="OAAssessmentCheckBox"
+                            HorizontalOptions="Center"
+                                  Grid.Column="1"
+                                  CheckedChanged="OAAssessmentCheckBox_CheckedChanged"/>
+                        <Label x:Name="Assessment2"
+                               VerticalTextAlignment="Center"
+                               HorizontalOptions="Start"
+                            Grid.Column="2"/>
+                    </Grid>
+                </Grid>
+                
+                <Grid>
+                     <Button Text="Delete"
+                            TextColor="White"
+                            BackgroundColor="Red"
+                            Clicked="DeleteAssessment_Clicked"/>
+                    
+                     <Button Text="Edit"
+                            TextColor="White"
+                            BackgroundColor="Blue"
+                            Clicked="EditAssessment_Clicked"
+                             Grid.Column="1"/>
+                </Grid>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+                <Label Text="Add Assessment"
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
+                <Grid>
+                    <Label Text="Select PA"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Select OA"
+                           HorizontalOptions="Center"
+                           Grid.Column="1"/>
+                    <Picker x:Name="PAAssessmentPicker"
+                            Grid.Row="1"
+                            Margin="20,0,0,0"/>
+                    <Picker x:Name="OAAssessmentPicker"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="0,0,20,0"/>
+                    
+                    <CheckBox x:Name="PACheckbox"
+                              HorizontalOptions="Center"
+                              Grid.Row="2"
+                              CheckedChanged="PACheckbox_CheckedChanged"/>
+                    <CheckBox x:Name="OACheckbox"
+                              HorizontalOptions="Center"
+                              Grid.Row="2"
+                              Grid.Column="1"
+                              CheckedChanged="OACheckbox_CheckedChanged"/>
+                </Grid>
+
+                <Button Text="Add"
+                        TextColor="White"
+                        BackgroundColor="Green"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        Clicked="AddAssessment_Clicked"/>
+                <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
+
+                <Button Text="Save"
+                        BackgroundColor="Yellow"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0"
+                        Clicked="Save_Clicked"/>
+                <Button Text="Cancel"
+                        TextColor="White"
+                        BackgroundColor="Red"
+                        WidthRequest="200"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,20"
+                        Clicked="Cancel_Clicked"/>
+                <Button Text="Home"
+                        WidthRequest="100"
+                        VerticalOptions="EndAndExpand"
+                        HorizontalOptions="Start"
+                        Clicked="Home_Clicked"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

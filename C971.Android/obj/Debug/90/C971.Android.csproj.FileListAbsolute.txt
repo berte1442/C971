@@ -485,3 +485,4 @@ C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\Plugin
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\Plugin.LocalNotifications.dll
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\Plugin.LocalNotifications.dll.mdb
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\src\crc640f9a3bf7250ef269\ScheduledAlarmHandler.java
+C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\stamp\SetupDependenciesForDesigner.stamp

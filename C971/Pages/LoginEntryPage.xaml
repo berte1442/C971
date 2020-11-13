@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="C971.LoginEntryPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Student Academics"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    FontSize="Medium"
+                    Padding="0,20,0,0"/>
+                <Label Text="Username"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    Padding="0,100,0,0"/>
+                <Entry
+                    Text=""
+                    VerticalOptions="Start"
+                    Margin="20,0,20,0"
+                    />
+                <Label Text="Password"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"  
+                    Padding="0,50,0,0"/>
+                <Entry 
+                    Text=""
+                    VerticalOptions="Start"
+                    IsPassword="True"
+                    Margin="20,0,20,0"/>
+                <Button
+                    Text="Log In"
+                    TextColor="White"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Center"
+                    BackgroundColor="Blue"
+                    Clicked="NavigateButton_OnClicked"
+                    />
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
