@@ -117,11 +117,13 @@ namespace C971
                     {
                         currentCourse.AssessmentID = 0;
                         Assessment1.Text = "No assessment assigned";
+                        PAAssessmentPicker.Items.Add(assessmentName);
                     }
                     else if(currentCourse.Assessment2ID == assessmentID)
                     {
                         currentCourse.Assessment2ID = 0;
                         Assessment2.Text = "No assessment assigned";
+                        OAAssessmentPicker.Items.Add(assessmentName);
                     }
                 }
                 catch
@@ -151,6 +153,7 @@ namespace C971
                 {
                     currentCourse.AssessmentID = assessment.AssessmentID;
                     Assessment1.Text = assessment.Name;
+                    PAAssessmentPicker.Items.Remove(assessment.Name);
                     PAAssessmentPicker.SelectedIndex = -1;
                     PACheckbox.IsChecked = false;
                 }
@@ -158,6 +161,7 @@ namespace C971
                 {
                     currentCourse.Assessment2ID = assessment.AssessmentID;
                     Assessment2.Text = assessment.Name;
+                    OAAssessmentPicker.Items.Remove(assessment.Name);
                     OAAssessmentPicker.SelectedIndex = -1;
                     OACheckbox.IsChecked = false;
                 }
@@ -181,16 +185,25 @@ namespace C971
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
-            if(InstructorPicker.SelectedIndex != -1)
-            {
-                var emailValidate = Email_Validate(InstructorEmail.Text);
-                var phoneValidate = Phone_Validate(InstructorPhone.Text);
+            try 
+            { 
+                bool emailValidate = true;
+                bool phoneValidate = true;
+
+                if (InstructorEmail.Text != null)
+                {
+                    emailValidate = Email_Validate(InstructorEmail.Text);
+                }
+                if(InstructorPhone.Text != null)
+                {
+                    phoneValidate = Phone_Validate(InstructorPhone?.Text);
+                }
 
                 if (emailValidate == false)
                 {
                     DisplayAlert("Invalid Email", "Invalid email address for course instructor.", "OK");
                 }
-                else if(phoneValidate == false)
+                else if (phoneValidate == false)
                 {
                     DisplayAlert("Invalid Phone", "Invalid phone number for course instructor.", "OK");
                 }
@@ -213,12 +226,13 @@ namespace C971
                         Instructor instructor = await App.Database.GetInstructorAsync(instructorName);
                         instructor.Name = InstructorName.Text;
                         string phone = barePhone;
-                        if(phone.Length == 10)
+                        if (phone.Length == 10)
                         {
                             phone = phone.Insert(0, "(");
                             phone = phone.Insert(4, ")");
                             phone = phone.Insert(8, "-");
-                        }else if(phone.Length == 7)
+                        }
+                        else if (phone.Length == 7)
                         {
                             phone.Insert(3, "-");
                         }
@@ -257,10 +271,15 @@ namespace C971
                     await App.Database.SaveCourseAsync(currentCourse);
                     await Application.Current.MainPage.Navigation.PopAsync();
 
+                    DisplayAlert("Saved", "Course edit has been saved.", "OK");
                 }
             }
+            catch
+            {
+                await DisplayAlert("Error", "Error editing course. Check all input fields for accurate data.", "OK");
+            }         
         }
-
+        
         private void Cancel_Clicked(object sender, EventArgs e)
         {
             Application.Current.MainPage.Navigation.PopAsync();
@@ -301,15 +320,16 @@ namespace C971
                 }
                 // loads all course instructors into Picker
                 var instructors = await App.Database.GetInstructorsAsync();
-                List<string> instructorNames = new List<string>();
+                //List<string> instructorNames = new List<string>();
                 foreach (var i in instructors)
                 {
                     if(i.Name != null)
                     {
-                        instructorNames.Add(i.Name);
+                        InstructorPicker.Items.Add(i.Name);
+                        //instructorNames.Add(i.Name);
                     }
                 }
-                InstructorPicker.ItemsSource = instructorNames;
+                //InstructorPicker.ItemsSource = instructorNames;
                 foreach (var i in instructors)
                 {
                     if (i.InstructorID == currentCourse.InstructorID)
@@ -352,6 +372,7 @@ namespace C971
                         if (a.AssessmentID == currentCourse.AssessmentID)
                         {
                             Assessment1.Text = a.Name;
+                            PAAssessmentPicker.Items.Remove(a.Name);
                         }
                     }
                     else if (a.AssessmentType.ToUpper() == "OA")
@@ -362,6 +383,7 @@ namespace C971
                         if (a.AssessmentID == currentCourse.Assessment2ID)
                         {
                             Assessment2.Text = a.Name;
+                            OAAssessmentPicker.Items.Remove(a.Name);
                         }
                     }
                 }
@@ -373,15 +395,12 @@ namespace C971
                 {
                     NotesSwitch.IsToggled = true;
                 }
-                //PAAssessmentPicker.ItemsSource = paAssessmentNames;
-                //OAAssessmentPicker.ItemsSource = oaAssessmentNames;
             }
             catch
             {
-
+                await DisplayAlert("Error", "Error loading course", "OK");
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
-
-
         }
 
         private void PACheckbox_CheckedChanged(object sender, CheckedChangedEventArgs e)

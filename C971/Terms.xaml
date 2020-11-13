@@ -14,13 +14,29 @@
                     FontSize="Large"
                     Padding="0,20,0,0" />
                 <Grid>
+                    <Button Text="Add Term"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center"
+                        BackgroundColor="Green"
+                        WidthRequest="200"
+                        Clicked="AddTerm_Clicked"/>
+                    <Button Text="View Term"
+                            TextColor="Black"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Yellow"
+                            WidthRequest="200"
+                            Clicked="ViewTerm_Clicked"
+                            Grid.Column="1"/>
                     <Button Text="Edit Term"
                         TextColor="White"
                         VerticalOptions="Start"
                         HorizontalOptions="Center"
                         BackgroundColor="Blue"
                         WidthRequest="200"
-                        Clicked="EditTerm_Clicked"/>
+                        Clicked="EditTerm_Clicked"
+                            Grid.Row="1"/>
                     <Button Text="Delete Term"
                         TextColor="White"
                         VerticalOptions="Start"
@@ -28,15 +44,9 @@
                         BackgroundColor="Red"
                         WidthRequest="200"
                         Clicked="DeleteTerm_Clicked"
+                        Grid.Row="1" 
                         Grid.Column="1"/>
-                    <Button Text="Add Term"
-                        TextColor="White"
-                        VerticalOptions="Start"
-                        HorizontalOptions="Center"
-                        BackgroundColor="Green"
-                        WidthRequest="200"
-                        Clicked="AddTerm_Clicked"
-                        Grid.Column="2"/>
+                   
                 </Grid>
                 <Label Text="Select Term"
                     VerticalOptions="Start"

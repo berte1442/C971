@@ -52,6 +52,12 @@ namespace C971
             instructor6.Email = "LWilks1342@ymail.com";
             App.Database.SaveInstructorAsync(instructor6);
 
+            Instructor instructor7 = new Instructor();
+            instructor7.Name = "Robert Haines";
+            instructor7.Phone = "(256)652-7448";
+            instructor7.Email = "rhaine8@wgu.edu";
+            App.Database.SaveInstructorAsync(instructor7);
+
             Assessment assessment = new Assessment();
             assessment.Name = "assessment1";
             assessment.AssessmentType = "PA";

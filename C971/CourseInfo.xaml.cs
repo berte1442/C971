@@ -34,9 +34,17 @@ namespace C971
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            CourseNameLabel.Text = currentCourse.Name;
+            CourseNameLabel.Text = "\"" + currentCourse.Name + "\"";
             CourseDatesLabel.Text = currentCourse.StartDate.ToShortDateString() + " - " + currentCourse.EndDate.ToShortDateString();
             CourseStatusLabel.Text = currentCourse.Status;
+            if (currentCourse.NotesPublic)
+            {
+                PrivacyLabel.Text = "Public";
+            }
+            else
+            {
+                PrivacyLabel.Text = "Private";
+            }
 
             var instructor = await App.Database.GetInstructorAsync(currentCourse.InstructorID);
             if(instructor != null)
@@ -63,6 +71,20 @@ namespace C971
                 Assessment2Description.Text = assessment2.AssessmentDescription.ToString();
                 Assessment2Dates.Text = assessment2.StartDate.ToShortDateString() + " - " + assessment2.EndDate.ToShortDateString();
             }
+        }
+
+        private void ShareNotes_Clicked(object sender, EventArgs e)
+        {
+            //if (currentCourse.NotesPublic)
+            //{
+            //    var smsMessenger = new ISmsTask();
+            //    if (smsMessenger.CanSendSms)
+            //        smsMessenger.SendSms("+27213894839493", "Well hello there from Xam.Messaging.Plugin");
+            //}
+            //else
+            //{
+            //    DisplayAlert("Private", "Course notes are set to private. You can change settings on the 'Edit Course' page", "OK");
+            //}
         }
     }
 }

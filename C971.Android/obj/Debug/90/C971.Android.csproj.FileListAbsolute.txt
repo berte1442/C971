@@ -478,4 +478,5 @@ C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\SQLite
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\System.Buffers.dll
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\System.Memory.dll
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\android\assets\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\res\xml\file_paths.xml
 C:\Users\rchpi\source\repos\C971\C971.Android\obj\Debug\90\stamp\SetupDependenciesForDesigner.stamp

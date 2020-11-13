@@ -28,6 +28,25 @@ namespace C971
             InitializeComponent();
         }
 
+        private async void AddTerm_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddTerm());
+        }
+
+        private async void ViewTerm_Clicked(object sender, EventArgs e)
+        {
+            if (TermPicker.SelectedIndex == -1)
+            {
+                await DisplayAlert("No Term Selected", "Select term to view", "Ok");
+            }
+            else
+            {
+                Term term = await App.Database.GetTermAsync(TermPicker.SelectedItem.ToString());
+
+                await Navigation.PushAsync(new ViewTerm(term));
+            }
+        }
+
         private async void EditTerm_Clicked(object sender, EventArgs e)
         {
             if (TermPicker.SelectedIndex == -1)
@@ -74,11 +93,6 @@ namespace C971
                     await DisplayAlert("Deleted", "Term successfully deleted", "OK");
                 }
             }
-        }
-
-        private async void AddTerm_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AddTerm());
         }
 
         protected async override void OnAppearing()
@@ -186,5 +200,22 @@ namespace C971
                 await DisplayAlert("No Course Selected", "Select course to view course info", "OK");
             }
         }
+
+
+        //public async void Term_Conflict()
+        //{
+        //    List<Term> terms = await App.Database.GetTermsAsync();
+        //    List<int> courseIDs = new List<int>;
+
+        //    foreach(var t in terms)
+        //    {
+        //        courseIDs.Add(t.CourseID);
+        //        courseIDs.Add(t.Course2ID);
+        //        courseIDs.Add(t.Course3ID);
+        //        courseIDs.Add(t.Course4ID);
+        //        courseIDs.Add(t.Course5ID);
+        //        courseIDs.Add(t.Course6ID);
+        //    }
+        //}
     }
 }

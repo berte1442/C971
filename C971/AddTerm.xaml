@@ -56,21 +56,33 @@
 
                 </Grid>
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
-
+                <Label x:Name="AddedCourseLabel"/>
                 <Label Text="Add Course"
                        FontSize="Large"
                        HorizontalOptions="Center"
                        Padding="0,20,0,0"/>
                 <Picker x:Name="AddCoursesPicker"
                         Margin="20,0,20,0"/>
-                <Button BackgroundColor="Blue"
-                        Text="Add Course"
-                        TextColor="White"
-                        WidthRequest="200"
-                        VerticalOptions="Start"
-                        HorizontalOptions="Center"
-                        Margin="0,0,0,20"
-                        Clicked="AddCourse_Clicked"/>
+                <Grid>
+                    <Button 
+                        BackgroundColor="Green"
+                            Text="Undo"
+                            TextColor="White"
+                            WidthRequest="200"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            Clicked="Undo_Clicked"/>
+                    <Button BackgroundColor="Blue"
+                            Text="Add Course"
+                            TextColor="White"
+                            WidthRequest="200"
+                            VerticalOptions="Start"
+                            HorizontalOptions="Center"
+                            Margin="0,0,0,20"
+                            Grid.Column="1"
+                            Clicked="AddCourse_Clicked"/>
+                </Grid>
+
                 <BoxView Color="Black" WidthRequest="100" HeightRequest="2"/>
 
                 <Button BackgroundColor="Yellow"
