@@ -30,14 +30,7 @@ namespace C971
 
             if(course.Status.ToUpper() == "INACTIVE")
             {
-                if(DateTime.Now > term.StartDate)
-                {
-                    StartDatePicker.MinimumDate = DateTime.Now;
-                }
-                else
-                {
-                    StartDatePicker.MinimumDate = term.StartDate;
-                }
+                StartDatePicker.MinimumDate = term.StartDate;
             }
             else
             {
@@ -214,7 +207,7 @@ namespace C971
                 }
                 else
                 {
-                    if (CourseTitleEntry.Text != null)
+                    if (CourseTitleEntry.Text != null && CourseTitleEntry.Text != "")
                     {
                         currentCourse.Name = CourseTitleEntry.Text;
                     }
@@ -242,7 +235,6 @@ namespace C971
                     {
                         CrossLocalNotifications.Current.Show("Course Ended", currentCourse.Name + " ended today",
                             102, currentCourse.StartDate);
-                        currentCourse.Status = "Completed";
                     }
                     else
                     {
