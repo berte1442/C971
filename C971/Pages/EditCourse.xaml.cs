@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Android;
+using Plugin.LocalNotifications;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,6 +20,7 @@ namespace C971
         private Term currentTerm = new Term();
         Assessment assessment = new Assessment();
         string barePhone;
+        bool publicNotes = false;
 
         public EditCourse(Course course, Term term)
         {
@@ -218,6 +220,46 @@ namespace C971
                     }
                     currentCourse.StartDate = StartDatePicker.Date;
                     currentCourse.EndDate = EndDatePicker.Date;
+                    currentCourse.StartNotification = StartSwitch.IsToggled;
+                    currentCourse.EndNotification = EndSwitch.IsToggled;
+                    if(currentCourse.StartNotification)
+                    {
+                        CrossLocalNotifications.Current.Show("Course Started", currentCourse.Name + " starts today",
+                            101, currentCourse.StartDate);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            CrossLocalNotifications.Current.Cancel(101);
+                        }
+                        catch
+                        {
+                            //ignore
+                        }
+                    } 
+                    if(currentCourse.EndNotification)
+                    {
+                        CrossLocalNotifications.Current.Show("Course Ended", currentCourse.Name + " ended today",
+                            102, currentCourse.StartDate);
+                        currentCourse.Status = "Completed";
+                    }
+                    else
+                    {
+                        try
+                        {
+                            CrossLocalNotifications.Current.Cancel(102);
+                        }
+                        catch
+                        {
+                            //ignore
+                        }
+                    }
+                    if(currentCourse.StartNotification || currentCourse.EndNotification)
+                    {
+                        CrossLocalNotifications.Current.Show("Notifications Set", "Course notifications have been turned on",
+                            103, DateTime.Now.AddSeconds(1));
+                    }
                     if (CourseStatusPicker.SelectedIndex != -1)
                     {
                         currentCourse.Status = CourseStatusPicker.SelectedItem.ToString();
@@ -250,6 +292,8 @@ namespace C971
                     if (NotesSwitch.IsToggled)
                     {
                         currentCourse.NotesPublic = true;
+
+                        // add code for sending sms here
                     }
                     else
                     {
@@ -298,7 +342,33 @@ namespace C971
             try
             {
                 base.OnAppearing();
-            
+                //sets noteswitch to correct on/off position
+                if (currentCourse.NotesPublic)
+                {
+                    NotesSwitch.IsToggled = true;
+                }
+                else
+                {
+                    NotesSwitch.IsToggled = false;
+                }
+                //sets startswitch to correct on/off position
+                if (currentCourse.StartNotification)
+                {
+                    StartSwitch.IsToggled = true;
+                }
+                else
+                {
+                    StartSwitch.IsToggled = false;
+                } 
+                //sets endswitch to correct on/off position
+                if (currentCourse.EndNotification)
+                {
+                    EndSwitch.IsToggled = true;
+                }
+                else
+                {
+                    EndSwitch.IsToggled = false;
+                }
                 //sets selected course name as text for editor
                 if(currentCourse.Name != null)
                 {
@@ -460,14 +530,6 @@ namespace C971
 
         private void NotesSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //if (NotesSwitch.IsToggled)
-            //{
-            //    currentCourse.NotesPublic = true;
-            //}
-            //else
-            //{
-            //    currentCourse.NotesPublic = false;
-            //}
         }
         public bool Email_Validate(string email)
         {
@@ -520,28 +582,8 @@ namespace C971
 
         private void StartSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            //    if (currentCourse.NotesPublic == false)
-            //    {
-            //        currentCourse.NotesPublic = true;
-            //    }
-            //    else
-            //    {
-            //        currentCourse.NotesPublic = false;
-            //    }
-            //    if (currentCourse.NotesPublic == true)
-            //    {
-            //        //LocalNotifications localNotifications = new LocalNotifications();
-            //        //localNotifications.Title = "Course Start";
-            //        //localNotifications.Body = currentCourse.Name + " starts today";
-            //        //localNotifications.NotifyTime = currentCourse.StartDate;
-            //        Bundle valuesSend = new Bundle();
-            //        valuesSend.PutString("testing notification", "Testing notifications");
 
-            //        //AlertDialog.Builder dialog = new AlertDialog.Builder(Android.Content.Context);
 
-            //        Intent newIntent = new Intent(, typeof(Terms));
-            //        newIntent.PutExtras(valuesSend);
-            //    }
         }
 
         private void EndSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

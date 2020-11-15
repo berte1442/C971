@@ -39,5 +39,15 @@ namespace C971
             get;
             set;
         }
+        public bool StartNotification
+        {
+            get;
+            set;
+        }
+        public bool EndNotification
+        {
+            get;
+            set;
+        }
     }
 }

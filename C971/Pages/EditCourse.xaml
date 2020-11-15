@@ -142,6 +142,7 @@
                        Padding="0,20,0,0"/>
             
                 <Editor x:Name="Notes"
+                        HeightRequest="100"
                     Placeholder="Write your notes for this course here"
                         Margin="20,0,20,0"/>
 
