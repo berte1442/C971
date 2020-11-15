@@ -1,4 +1,5 @@
-﻿using Android.OS;
+﻿using Android.Content;
+using Android.OS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -519,21 +520,28 @@ namespace C971
 
         private void StartSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (currentCourse.NotesPublic == false)
-            {
-                currentCourse.NotesPublic = true;
-            }
-            else
-            {
-                currentCourse.NotesPublic = false;
-            }
-            if (currentCourse.NotesPublic == true)
-            {
-                LocalNotifications localNotifications = new LocalNotifications();
-                localNotifications.Title = "Course Start";
-                localNotifications.Body = currentCourse.Name + " starts today";
-                localNotifications.NotifyTime = currentCourse.StartDate;
-            }
+            //    if (currentCourse.NotesPublic == false)
+            //    {
+            //        currentCourse.NotesPublic = true;
+            //    }
+            //    else
+            //    {
+            //        currentCourse.NotesPublic = false;
+            //    }
+            //    if (currentCourse.NotesPublic == true)
+            //    {
+            //        //LocalNotifications localNotifications = new LocalNotifications();
+            //        //localNotifications.Title = "Course Start";
+            //        //localNotifications.Body = currentCourse.Name + " starts today";
+            //        //localNotifications.NotifyTime = currentCourse.StartDate;
+            //        Bundle valuesSend = new Bundle();
+            //        valuesSend.PutString("testing notification", "Testing notifications");
+
+            //        //AlertDialog.Builder dialog = new AlertDialog.Builder(Android.Content.Context);
+
+            //        Intent newIntent = new Intent(, typeof(Terms));
+            //        newIntent.PutExtras(valuesSend);
+            //    }
         }
 
         private void EndSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
