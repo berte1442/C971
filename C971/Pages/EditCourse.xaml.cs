@@ -537,7 +537,7 @@ namespace C971
         private void NotesSwitch_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
         }
-        public bool Email_Validate(string email)
+        public static bool Email_Validate(string email)
         {
             var emailLength = email.Length;
             var atIndex = email.IndexOf("@");
@@ -574,7 +574,7 @@ namespace C971
                 return true;
             }
         }   
-        public bool Domain_Check(string domain)
+        public static bool Domain_Check(string domain)
         {
             if(domain != "com" && domain != "edu" && domain != "gov" && domain != "net" && domain != "org")
             {

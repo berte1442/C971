@@ -155,7 +155,7 @@
                         HorizontalOptions="Center"
                             Grid.Column="1"
                             OnColor="LightGray"/>
-                    <Label Text="Public"
+                    <Label Text="Share w/ Instructor"
                            Grid.Column="2"
                            HorizontalTextAlignment="Start"/>
                 </Grid>

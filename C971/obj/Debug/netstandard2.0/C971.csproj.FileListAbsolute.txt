@@ -23,3 +23,4 @@ C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\Pages\MainPage.xa
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\Pages\Terms.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\Pages\ViewTerm.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\C971.csprojAssemblyReference.cache

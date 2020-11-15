@@ -14,6 +14,7 @@ namespace C971
     {
         Course currentCourse = new Course();
         Term currentTerm = new Term();
+        List<string> emailList = new List<string>();
         public CourseInfo(Course course, Term term)
         {
             currentCourse = course;
@@ -75,17 +76,72 @@ namespace C971
 
         private void ShareNotes_Clicked(object sender, EventArgs e)
         {
-            if (currentCourse.NotesPublic)
+            if (emailList.Count > 0)
             {
-                ShareNotes sms = new ShareNotes();
+                ShareNotes message = new ShareNotes();
                 //sms.SendSms(currentCourse.Notes, InstructorPhone.Text);
-                List<string> email = new List<string>();
-                email.Add(NotesLabel.Text);
-                sms.SendEmail("'Student Name' - " + currentCourse.Name + " Notes", currentCourse.Notes, email);
+                message.SendEmail("'Student Name' - " + currentCourse.Name + " Notes", currentCourse.Notes, emailList);
+                EmailList.Text = "";
             }
             else
             {
-                DisplayAlert("Private", "Course notes are set to private. You can change settings on the 'Edit Course' page", "OK");
+                DisplayAlert("No Emails Selected", "Enter email address(es) to send notes to.", "OK");
+            }
+        }
+
+        private void AddEmailButton_Clicked(object sender, EventArgs e)
+        {
+            if(AddEmailEntry.Text != null && AddEmailEntry.Text != "")
+            {
+                var email = AddEmailEntry.Text;
+                var validate = EditCourse.Email_Validate(email);
+                if (validate)
+                {
+                    emailList.Add(email);
+                    AddEmailEntry.Text = "";
+
+                    if(EmailList.Text == null || EmailList.Text == "")
+                    {
+                        EmailList.Text = email;
+                    }
+                    else
+                    {
+                        EmailList.Text += " / " + email;
+                    }
+                    currentCourse.NotesPublic = true;
+                }
+                else
+                {
+                    DisplayAlert("Invalid", "Invalid email address.", "OK");
+                }
+            }
+            else
+            {
+                DisplayAlert("No Email", "No email address entered", "OK");
+            }
+        }
+
+        private void Undo_Clicked(object sender, EventArgs e)
+        {
+            if (emailList.Count > 0)
+            {
+                int index = emailList.Count - 1;
+                
+                if(emailList.Count > 1)
+                {
+                    int commaIndex = EmailList.Text.LastIndexOf(" / ");
+
+                    string newString = EmailList.Text.Substring(0, commaIndex);
+
+                    EmailList.Text = newString;
+
+                }
+                else
+                {
+                    EmailList.Text = "";
+                }
+                emailList.RemoveAt(index);
+
             }
         }
     }

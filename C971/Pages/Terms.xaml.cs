@@ -99,11 +99,25 @@ namespace C971
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            TermPicker.Items.Clear(); // clears before every load so not to have duplicates or deleted terms
             var terms = await App.Database.GetTermsAsync();
-            
+
+            var courses = await App.Database.GetCoursesAsync();
+
+            foreach(var c in courses)
+            {
+                if(c.StartDate < DateTime.Now && c.EndDate > DateTime.Now)
+                {
+                    c.Status = "Active";
+                }
+                else if(DateTime.Now > c.EndDate)
+                {
+                    c.Status = "Completed";
+                }
+            }
             if(terms.Count > 0)
             {
+                TermPicker.Items.Clear(); // clears before every load so not to have duplicates or deleted terms
+
                 for (int i = 0; i < terms.Count; i++)
                 {
                     TermPicker.Items.Add(terms[i].Name);
