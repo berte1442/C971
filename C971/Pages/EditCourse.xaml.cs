@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Android;
+using Xamarin.Essentials;
 using Plugin.LocalNotifications;
 
 using Xamarin.Forms;
@@ -215,6 +216,19 @@ namespace C971
                     currentCourse.EndDate = EndDatePicker.Date;
                     currentCourse.StartNotification = StartSwitch.IsToggled;
                     currentCourse.EndNotification = EndSwitch.IsToggled;
+                    if (NotesSwitch.IsToggled)
+                    {
+                        currentCourse.NotesPublic = true;
+                        ShareNotes sms = new ShareNotes();
+                        //sms.SendSms(currentCourse.Notes, InstructorPhone.Text);
+                        List<string> email = new List<string>();
+                        email.Add(InstructorEmail.Text);
+                        sms.SendEmail("'Student Name' - " + currentCourse.Name + " Notes", currentCourse.Notes, email);
+                    }
+                    else
+                    {
+                        currentCourse.NotesPublic = false;
+                    }
                     if(currentCourse.StartNotification)
                     {
                         CrossLocalNotifications.Current.Show("Course Started", currentCourse.Name + " starts today",
