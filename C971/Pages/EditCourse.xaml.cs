@@ -541,7 +541,7 @@ namespace C971
         {
             var emailLength = email.Length;
             var atIndex = email.IndexOf("@");
-            var dotIndex = email.IndexOf(".");
+            var dotIndex = email.LastIndexOf(".");
 
             var domain = email.Substring(dotIndex + 1);
             var domainValidate = Domain_Check(domain);        

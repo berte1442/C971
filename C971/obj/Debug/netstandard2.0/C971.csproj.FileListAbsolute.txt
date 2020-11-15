@@ -11,7 +11,6 @@ C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\Mono.Android.dll
 C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\Mono.Android.pdb
 C:\Users\rchpi\source\repos\C971\C971\bin\Debug\netstandard2.0\Mono.Android.xml
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\C971.csproj.CopyComplete
-C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\C971.csprojAssemblyReference.cache
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\Pages\AddTerm.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\Pages\App.xaml.g.cs
 C:\Users\rchpi\source\repos\C971\C971\obj\Debug\netstandard2.0\Pages\AssessmentDetails.xaml.g.cs

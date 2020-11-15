@@ -26,6 +26,7 @@ namespace C971
         public Terms()
         {
             InitializeComponent();
+            OnAppearing();
         }
 
         private async void AddTerm_Clicked(object sender, EventArgs e)

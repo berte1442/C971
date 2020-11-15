@@ -75,16 +75,18 @@ namespace C971
 
         private void ShareNotes_Clicked(object sender, EventArgs e)
         {
-            //if (currentCourse.NotesPublic)
-            //{
-            //    var smsMessenger = new ISmsTask();
-            //    if (smsMessenger.CanSendSms)
-            //        smsMessenger.SendSms("+27213894839493", "Well hello there from Xam.Messaging.Plugin");
-            //}
-            //else
-            //{
-            //    DisplayAlert("Private", "Course notes are set to private. You can change settings on the 'Edit Course' page", "OK");
-            //}
+            if (currentCourse.NotesPublic)
+            {
+                ShareNotes sms = new ShareNotes();
+                //sms.SendSms(currentCourse.Notes, InstructorPhone.Text);
+                List<string> email = new List<string>();
+                email.Add(NotesLabel.Text);
+                sms.SendEmail("'Student Name' - " + currentCourse.Name + " Notes", currentCourse.Notes, email);
+            }
+            else
+            {
+                DisplayAlert("Private", "Course notes are set to private. You can change settings on the 'Edit Course' page", "OK");
+            }
         }
     }
 }
